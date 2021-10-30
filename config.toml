@@ -6,7 +6,7 @@ theme = "hugo-winston-theme"
 pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 pygmentsUseClasses = true
-paginate = 4
+paginate = 5
 
 [module]
   [module.hugoVersion]

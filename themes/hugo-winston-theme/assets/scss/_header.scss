@@ -198,11 +198,12 @@ input[type=checkbox]:checked ~ #overlay-button {
           }
         }
       }
-
       &.active {
         a {
           &::after {
             content: '.';
+            font-size: 31px;
+            line-height: 0;
           }
         }
       }

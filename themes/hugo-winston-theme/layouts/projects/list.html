@@ -1,5 +1,6 @@
 {{ define "body_classes" }}page-default-list{{ end }}
 
+
 {{ define "main" }}
   <div class="intro">
     <h1>{{ .Title }}{{ if .Site.Params.addDot }}<span class="dot">.</span>{{ end }}</h1>
@@ -8,7 +9,7 @@
   {{ .Content }}
   
   {{ $paginator := .Paginate (where .Data.Pages "Type" "projects") }}
-  {{ range $paginator.Pages }}
+  {{ range sort $paginator.Pages ".Params.rank" "desc"}}
     {{ .Render "summary" }}
   {{ end }}
   <!-- Hugo's default pagination template. -->

@@ -1,9 +1,15 @@
-<div class="summary">
-    {{ if .Site.Params.showAuthorOnPosts }}
-      {{ partial "author.html" . }}
-    {{ else }}
-      <div class="summary-date">{{ dateFormat "Jan 2, 2006" .Date }}</div>
-    {{ end }}
-    <h2 class="summary-title"><a href="{{ .RelPermalink }}"></a>{{ .Title }}</a></h2>
+<div class="summary-project">
+    <h2 class="summary-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
     <p class="summary-description">{{ .Params.description }}</p>
+    <div class="summary-footer">
+        <div class="summary-tools">
+            {{ range .Params.tools }}
+                <span>{{ . }}</span>
+            {{ end }}
+        </div>
+        <div class="summary-actions">
+            {{ if .Params.github_url}}<a href="{{ .Params.github_url }}"><i class="fab fa-github"></i></a> {{ end }}
+            {{ if .Params.external_url}}<a href="{{ .Params.external_url }}"><i class="fas fa-external-link-alt"></i></a>{{ end }}
+        </div>
+    </div>
 </div>
