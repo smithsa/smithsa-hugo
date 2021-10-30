@@ -23,18 +23,30 @@
 }
 .author-large {
   font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   img {
     width: 50px;
     height: 50px;
   }
+  .author-metadata {
+    text-align: left;
+    margin-left: 8px;
+  }
+
   .author-name {
     display: inline-block;
     vertical-align: middle;
     font-weight: bold;
-    margin-left: 5px;
+    margin-left: 0px;
   }
   .author-title {
     display: inline-block;
     vertical-align: middle;
+    font-size: 16px;
+    @include breakpoint('mobile') { 
+      font-size: 20px;
+    }
   }
 }

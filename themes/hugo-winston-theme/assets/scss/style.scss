@@ -11,6 +11,7 @@
 }
 
 $breakpoints: (
+  'mobile': 360px,
   'small': 700px,
   'medium': 992px,
   'large': 1200px,
@@ -36,14 +37,20 @@ body {
   font-family: var(--font-family-paragraph);
   color: var(--text-color);
   margin: 0;
-  padding: 30px;
+  padding: 20px;
   overflow-x: hidden;
+  @include breakpoint('mobile') {
+    padding: 30px;
+  }
   @include breakpoint('small') {
     padding: 50px;
   }
   &.frame {
     min-height: 100vh;
-    border: 18px solid var(--highlight-color);
+    border: 14px solid var(--highlight-color);
+    @include breakpoint('mobile') {
+      border: 18px solid var(--highlight-color);
+    }
   }
 }
 
