@@ -1,0 +1,26 @@
+baseURL = "https://example.com"
+languageCode = "en-us"
+title = "Sade Smith"
+theme = "hugo-winston-theme"
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+paginate = 4
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.55.0"
+
+[params]
+  google_analytics_id = ""
+  twitter_handle = "@itsSadeSmith"
+  showAuthorOnHomepage = true
+  showAuthorOnPosts = false
+  showPostsOnHomepage = false
+  addFrame = true
+  addDot = true
+
+[taxonomies]
+   tag = "tags"
