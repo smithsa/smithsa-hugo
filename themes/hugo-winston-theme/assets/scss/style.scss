@@ -26,7 +26,7 @@ $breakpoints: (
 @import 'summary';
 @import 'author';
 @import 'pagination';
-@import 'pygments/github';
+@import 'prism';
 
 html, body {
   box-sizing: border-box;
@@ -64,6 +64,10 @@ body {
     width:100%;
     max-width: 500px;
   }
+}
+
+.highlight {
+  margin-bottom: 20px;
 }
 
 .blog img {

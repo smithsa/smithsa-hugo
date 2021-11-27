@@ -2,7 +2,7 @@
 title: "Maker Share: 3D CAD Models"
 date: 2018-12-28
 categories: CAD
-tags: [Maker Share, CAD]
+tags: [makershare, CAD]
 description: This post is a break from my normal web and software development posts. I wanted to take a break and share some things not related to coding that I've been doing so I've created a new series called "Maker Share."
 ---
 
