@@ -1,6 +1,6 @@
 ---
-title: You don't start out writing good stuff
-description: The hallway smelt of boiled cabbage and old rag mats.
+title: Software Engineer From Chicago
+description: Hey, I'm Sade Smith. I'm a Full Stack Software Engineer from The Windy City.
 ---
 
-The hallway smelt of boiled cabbage and old rag mats. At one end of it a coloured poster, too large for indoor display, had been tacked to the wall. It depicted simply an enormous face, more than a metre wide: the face of a man of about forty-five, with a heavy black moustache and ruggedly handsome features. Winston made for the stairs. It was no use trying the lift. Sade Smith.
+Hey, I'm Sade Smith. I'm a full-stack Software Engineer from The Windy City 🏙️ with over 6 years of experience. I am driven by my love of creative problem-solving and desire to contribute to general welfare of the world. You can read [ more about me here](./pages/about), or explore my projects and blog posts.
