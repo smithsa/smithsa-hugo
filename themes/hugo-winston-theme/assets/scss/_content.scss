@@ -150,3 +150,49 @@ ul {
 .dot {
   color: var(--highlight-color);
 }
+
+.highlight {
+  margin-bottom: 20px;
+}
+
+.blog img {
+  width: 100%;
+}
+
+.personal-feed {
+  margin-top: 50px;
+
+  img{
+    margin: 0;
+  }
+  .crt-logo.crt-tag,
+  .crt-social-icon,
+  .crt-post-fullname,
+  .crt-popup-right,
+  .crt-popup,
+  .crt-post-footer {
+    display: none !important;
+    height:0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+  .crt-carousel-stage{
+    min-height: 400px !important;
+  }
+
+  @media(max-width: (500px)) {
+    .crt-carousel-feed {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .crt-panel-arrow {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.crt-popup-wrapper.crt-popup-wrapper-visible {
+  display: none !important;
+}

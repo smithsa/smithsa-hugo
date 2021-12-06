@@ -1,5 +1,5 @@
 ---
-title: Software Engineer From Chicago
+title: I write code, not tragedies
 description: Hey, I'm Sade Smith. I'm a Full Stack Software Engineer from The Windy City.
 ---
 
