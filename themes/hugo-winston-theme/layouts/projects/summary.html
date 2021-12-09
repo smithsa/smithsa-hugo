@@ -1,5 +1,5 @@
 <div class="summary-project">
-    <h2 class="summary-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <h2 class="summary-title"><a href="{{ if .Params.external_url}} {{ .Params.external_url }} {{ else }} {{.Params.github_url }}{{ end }}">{{ .Title }}</a></h2>
     <p class="summary-description">{{ .Params.description }}</p>
     <div class="summary-footer">
         <div class="summary-tools">
@@ -8,8 +8,8 @@
             {{ end }}
         </div>
         <div class="summary-actions">
-            {{ if .Params.github_url}}<a href="{{ .Params.github_url }}"><i class="fab fa-github"></i></a> {{ end }}
-            {{ if .Params.external_url}}<a href="{{ .Params.external_url }}"><i class="fas fa-external-link-alt"></i></a>{{ end }}
+            {{ if .Params.github_url}}<a target="_blank" href="{{ .Params.github_url }}"><i class="fab fa-github"></i></a> {{ end }}
+            {{ if .Params.external_url}}<a target="_blank" href="{{ .Params.external_url }}"><i class="fas fa-external-link-alt"></i></a>{{ end }}
         </div>
     </div>
 </div>
