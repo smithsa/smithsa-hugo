@@ -21,6 +21,7 @@ paginate = 6
   showPostsOnHomepage = false
   addFrame = true
   addDot = true
+  showAuthorName = true
 
 [taxonomies]
    tag = "tags"
