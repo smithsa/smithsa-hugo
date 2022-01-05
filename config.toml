@@ -1,4 +1,4 @@
-baseURL = "https://smithsa.github.io/smithsa-hugo/"
+baseURL = "https://smithsa.github.io/"
 languageCode = "en-us"
 title = "Sade Smith"
 theme = "hugo-winston-theme"
