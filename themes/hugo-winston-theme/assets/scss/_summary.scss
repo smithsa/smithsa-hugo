@@ -64,6 +64,7 @@
   }
   .summary-tools{
     span {
+      font-style: italic;
       &:after {
         content: ",";
       }
