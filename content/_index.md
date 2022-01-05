@@ -1,5 +1,5 @@
 ---
-title: I build for the world wide web3
+title: I build for the world wide webb
 description: Hey, I'm Sade Smith. I'm a Full Stack Software Engineer from The Windy City.
 alt_titles: ['I build applications for the web', 'Hello World!', 'I write code, not tragedies', 'Sade, like the singer.', 'Shah-DAY', 'Hey', 'Hi there', 'I build', 'I build for the web', 'Sade Smith']
 ---
