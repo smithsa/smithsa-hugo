@@ -7,11 +7,13 @@
     {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
   </div>
   {{ .Content }}
-  
-  {{ $paginator := .Paginate (where .Data.Pages "Type" "projects") }}
-  {{ range sort $paginator.Pages ".Params.rank" "desc"}}
+
+{{ $selectedProjects := ((where .Data.Pages "Type" "projects").ByParam "weight").Reverse }}
+{{ $paginator := .Paginate $selectedProjects }}
+  {{ range $paginator.Pages }}
     {{ .Render "summary" }}
   {{ end }}
+
   <!-- Hugo's default pagination template. -->
   {{ template "_internal/pagination.html" . }}
 {{ end }}

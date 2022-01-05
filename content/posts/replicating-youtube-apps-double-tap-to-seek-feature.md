@@ -2,7 +2,7 @@
 title:  "Replicating Youtube App's Double Tap to Seek Feature"
 date: 2019-01-12
 categories: [web development]
-tags: [javaScript]
+tags: [javascript]
 description: Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser.
 ---
 
