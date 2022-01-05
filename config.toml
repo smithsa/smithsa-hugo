@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://smithsa.github.io/smithsa-hugo/"
 languageCode = "en-us"
 title = "Sade Smith"
 theme = "hugo-winston-theme"
