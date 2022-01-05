@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alexa on Sade Smith</title>
+    <link>https://example.com/tags/alexa/</link>
+    <description>Recent content in Alexa on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/alexa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Train Tracking Alexa Skill with ASK Node.js SDK</title>
+      <link>https://example.com/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</guid>
+      <description>Introduction I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold is the worst part about the winter for me. For the last few weeks, I have found myself in the predicament where I leave the house and get to the train station only to find that the train is delayed or the next train is 15 minutes away.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>accessibility on Sade Smith</title>
+    <link>https://example.com/tags/accessibility/</link>
+    <description>Recent content in accessibility on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/accessibility/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>10 Tips for Web Accessibility (Part 2)</title>
+      <link>https://example.com/posts/tips-for-web-accessiblity-part-2/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/tips-for-web-accessiblity-part-2/</guid>
+      <description>Introduction In the previous article, 10 Tips for Web Accessibility (Part 1), we covered the first five tips I have for creating accessible websites. In this post, I will continue to list off the remaining five tips. In the last five tips, I will cover skip links, ARIA, form labels, and font sizes. 6. Create Skip Links Skip links allow users who are not using a mouse and are tabbing through the page to bypass links in sections like the navigation, and go directly to the main content of the page.</description>
+    </item>
+    
+    <item>
+      <title>10 Tips for Web Accessibility (Part 1)</title>
+      <link>https://example.com/posts/tips-for-web-accessiblity-part-1/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/tips-for-web-accessiblity-part-1/</guid>
+      <description>Introduction The benefits of developing accessible websites undoubtedly outweigh the costs. First and foremost, all potential users are able to use your web application. Users with disabilities will be able to access information and perform tasks just as those without disabilities. Secondly, accessibility (a11y) best practices share similar practices with other web related best practices such as search engine optimization (SEO) and usability standards. Following the best practices for accessibility means you will be following the best practices of the web.</description>
+    </item>
+    
+  </channel>
+</rss>

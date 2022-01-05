@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Sade Smith</title>
+    <link>https://example.com/posts/</link>
+    <description>Recent content in Blog on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metro Mini Soap Dispenser Timer</title>
+      <link>https://example.com/posts/metro-mini-soap-dispenser/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/metro-mini-soap-dispenser/</guid>
+      <description>Introduction Since the outbreak of the 2019 Novel Coronavirus, it is now common knowledge that the Centers for Disease Control recommends that individuals frequently wash their hands for at least 20 seconds to protect against the virus and other pathogens. I’ve come to learn that 20 seconds feels a lot longer than you would imagine. The advice has been to sing the “Happy Birthday” or the ABC song twice, I’ve opted for the ABC song, but after a while it becomes an annoying affair.</description>
+    </item>
+    
+    <item>
+      <title>Arduino Powered Cybertruck</title>
+      <link>https://example.com/posts/arduino-powered-cybertruck/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/arduino-powered-cybertruck/</guid>
+      <description>Introduction One of my goals this year was to build a robot for a Robot Riot event, affectionately known as Chicago’s worst and only robot fighting league. Initially, going into building it, I had no clue what the theme would be but after building the chassis, attaching the motors, and then deciding to use a PS3 controller as my control device for the robot, the idea eventually came to me. At first, I thought of making a Minecraft bot but then I saw a Minecraft built Tesla’s Cybertruck and thought why not the Cybertruck!</description>
+    </item>
+    
+    <item>
+      <title>Building An Activity Monitor with Circuit Playground Express</title>
+      <link>https://example.com/posts/building-an-activity-monitor-with-circuit-playground-express/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/building-an-activity-monitor-with-circuit-playground-express/</guid>
+      <description>Introduction Earlier this year, the Chicago Python Meetup Group held a workshop on CircuitPython. I entered an idea to build an activity monitor for the workshop and was selected to participate and received a Circuit Playground Express. The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself and I found it much easier to work with than the Arduino.</description>
+    </item>
+    
+    <item>
+      <title>Replicating Youtube App&#39;s Double Tap to Seek Feature</title>
+      <link>https://example.com/posts/replicating-youtube-apps-double-tap-to-seek-feature/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/replicating-youtube-apps-double-tap-to-seek-feature/</guid>
+      <description>Introduction Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser. It’s a feature on the Youtube mobile application app that allows the user to forward the video if the right side of the video is double tapped and rewind the video if the left side is double tapped.</description>
+    </item>
+    
+    <item>
+      <title>Maker Share: 3D CAD Models</title>
+      <link>https://example.com/posts/maker-share-3d-cad-models/</link>
+      <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/maker-share-3d-cad-models/</guid>
+      <description> Versatile Vacuum Nozzle
+   Tantalizing Tweezers
+   Well-made Wrench
+  </description>
+    </item>
+    
+    <item>
+      <title>Building a Train Tracking Alexa Skill with ASK Node.js SDK</title>
+      <link>https://example.com/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</guid>
+      <description>Introduction I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold is the worst part about the winter for me. For the last few weeks, I have found myself in the predicament where I leave the house and get to the train station only to find that the train is delayed or the next train is 15 minutes away.</description>
+    </item>
+    
+    <item>
+      <title>Building a Blog With Jekyll</title>
+      <link>https://example.com/posts/building-a-blog-with-jekyll/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/building-a-blog-with-jekyll/</guid>
+      <description>Introduction A few months ago, I decided to convert my personal website, which was a static HTML site, to Jekyll. If you aren’t familiar with Jekyll, it’s a blog-aware static site generator built on Ruby. I wanted to create a blog for my website and also have the ability to template the pages of my site but wanted a lightweight solution. I considered a few content management systems but ultimately Jekyll came out on top.</description>
+    </item>
+    
+    <item>
+      <title>10 Tips for Web Accessibility (Part 2)</title>
+      <link>https://example.com/posts/tips-for-web-accessiblity-part-2/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/tips-for-web-accessiblity-part-2/</guid>
+      <description>Introduction In the previous article, 10 Tips for Web Accessibility (Part 1), we covered the first five tips I have for creating accessible websites. In this post, I will continue to list off the remaining five tips. In the last five tips, I will cover skip links, ARIA, form labels, and font sizes. 6. Create Skip Links Skip links allow users who are not using a mouse and are tabbing through the page to bypass links in sections like the navigation, and go directly to the main content of the page.</description>
+    </item>
+    
+    <item>
+      <title>10 Tips for Web Accessibility (Part 1)</title>
+      <link>https://example.com/posts/tips-for-web-accessiblity-part-1/</link>
+      <pubDate>Sun, 05 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/tips-for-web-accessiblity-part-1/</guid>
+      <description>Introduction The benefits of developing accessible websites undoubtedly outweigh the costs. First and foremost, all potential users are able to use your web application. Users with disabilities will be able to access information and perform tasks just as those without disabilities. Secondly, accessibility (a11y) best practices share similar practices with other web related best practices such as search engine optimization (SEO) and usability standards. Following the best practices for accessibility means you will be following the best practices of the web.</description>
+    </item>
+    
+    <item>
+      <title>3 Browser APIs to be Excited About</title>
+      <link>https://example.com/posts/browser-apis-to-be-excited-about/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/browser-apis-to-be-excited-about/</guid>
+      <description>Introduction Each year web technologies push the boundaries of what was thought possible. The gap between native and web applications steadily narrows as browsers introduce new web/browser application programming interfaces (APIs). Evidence of this is seen in the standardization of browser APIs like Geolocation and AmbientLightSensor. These APIs remove capability barriers by providing access to device hardware. Additionally, we can see APIs like Web Storage and IndexedDB adding a performance boost by storing data on the client-side.</description>
+    </item>
+    
+    <item>
+      <title>Scraping Client Side Rendered Data with Python and Selenium</title>
+      <link>https://example.com/posts/scraping-client-side-rendered-data-with-python-and-selenium/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/scraping-client-side-rendered-data-with-python-and-selenium/</guid>
+      <description>Introduction Scraping data from websites often offers a way to automate tedious tasks and improve productivity. However, many people run into issues when the content of a website is generated on the client side as opposed to the server-side. For instance, content can not be retreived with just a HTTP request for websites that utilize AJAX to generate it&amp;rsquo;s content. A web scrapper using only server-side requests would be unable to scrape the data of such a site because the HTML of the page does not load until the javascript of the site can be executed.</description>
+    </item>
+    
+    <item>
+      <title>Overview of the HTTP/2 Protocol</title>
+      <link>https://example.com/posts/overview-of-the-http2-protocol/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/overview-of-the-http2-protocol/</guid>
+      <description>Introduction In 2015, the HyperText Transfer Protocol (HTTP) underwent a major revision when HTTP/2 became officially standardized. With the protocol&amp;rsquo;s last major update being in 1999 (HTTP/1.1), it was a much needed upgrade. The previous version of the protocol, HTTP/1.1, proved to posses numerous limitations for most modern websites. The average HTTP requests per page have risen dramatically overtime as well as page size. Simply put, HTTP/1.1 was developed to handle websites of its time and not of today.</description>
+    </item>
+    
+  </channel>
+</rss>

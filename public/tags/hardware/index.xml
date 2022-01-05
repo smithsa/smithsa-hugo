@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hardware on Sade Smith</title>
+    <link>https://example.com/tags/hardware/</link>
+    <description>Recent content in hardware on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Metro Mini Soap Dispenser Timer</title>
+      <link>https://example.com/posts/metro-mini-soap-dispenser/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/metro-mini-soap-dispenser/</guid>
+      <description>Introduction Since the outbreak of the 2019 Novel Coronavirus, it is now common knowledge that the Centers for Disease Control recommends that individuals frequently wash their hands for at least 20 seconds to protect against the virus and other pathogens. I’ve come to learn that 20 seconds feels a lot longer than you would imagine. The advice has been to sing the “Happy Birthday” or the ABC song twice, I’ve opted for the ABC song, but after a while it becomes an annoying affair.</description>
+    </item>
+    
+    <item>
+      <title>Arduino Powered Cybertruck</title>
+      <link>https://example.com/posts/arduino-powered-cybertruck/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/arduino-powered-cybertruck/</guid>
+      <description>Introduction One of my goals this year was to build a robot for a Robot Riot event, affectionately known as Chicago’s worst and only robot fighting league. Initially, going into building it, I had no clue what the theme would be but after building the chassis, attaching the motors, and then deciding to use a PS3 controller as my control device for the robot, the idea eventually came to me. At first, I thought of making a Minecraft bot but then I saw a Minecraft built Tesla’s Cybertruck and thought why not the Cybertruck!</description>
+    </item>
+    
+    <item>
+      <title>Building An Activity Monitor with Circuit Playground Express</title>
+      <link>https://example.com/posts/building-an-activity-monitor-with-circuit-playground-express/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/building-an-activity-monitor-with-circuit-playground-express/</guid>
+      <description>Introduction Earlier this year, the Chicago Python Meetup Group held a workshop on CircuitPython. I entered an idea to build an activity monitor for the workshop and was selected to participate and received a Circuit Playground Express. The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself and I found it much easier to work with than the Arduino.</description>
+    </item>
+    
+  </channel>
+</rss>

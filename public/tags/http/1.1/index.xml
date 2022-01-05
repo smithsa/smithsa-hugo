@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>http/1.1 on Sade Smith</title>
+    <link>https://example.com/tags/http/1.1/</link>
+    <description>Recent content in http/1.1 on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://example.com/tags/http/1.1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview of the HTTP/2 Protocol</title>
+      <link>https://example.com/posts/overview-of-the-http2-protocol/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/posts/overview-of-the-http2-protocol/</guid>
+      <description>Introduction In 2015, the HyperText Transfer Protocol (HTTP) underwent a major revision when HTTP/2 became officially standardized. With the protocol&amp;rsquo;s last major update being in 1999 (HTTP/1.1), it was a much needed upgrade. The previous version of the protocol, HTTP/1.1, proved to posses numerous limitations for most modern websites. The average HTTP requests per page have risen dramatically overtime as well as page size. Simply put, HTTP/1.1 was developed to handle websites of its time and not of today.</description>
+    </item>
+    
+  </channel>
+</rss>
