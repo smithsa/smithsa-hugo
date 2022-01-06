@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Sade Smith</title>
+    <link>https://smithsa.github.io/smithsa-hugo/tags/</link>
+    <description>Recent content in Tags on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/smithsa-hugo/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>arduino</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/arduino/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/arduino/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hardware</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/hardware/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>makershare</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/makershare/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/makershare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metromini</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/metromini/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/metromini/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>robot</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/robot/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/robot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>robot riot</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/robot-riot/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/robot-riot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>circuit playground express</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/circuit-playground-express/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/circuit-playground-express/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>circuitpython</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/circuitpython/</link>
+      <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/circuitpython/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/javascript/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CAD</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/cad/</link>
+      <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/cad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>alexa</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/alexa/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/alexa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ASK SDK</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/ask-sdk/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/ask-sdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/node/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jekyll</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/jekyll/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/jekyll/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static site generator</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/static-site-generator/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/static-site-generator/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/tutorial/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>a11y</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/a11y/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/a11y/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>accessibility</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/accessibility/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/accessibility/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wcag</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/wcag/</link>
+      <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/wcag/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apis</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/apis/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/apis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>browser</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/browser/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/browser/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>payment requests</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/payment-requests/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/payment-requests/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pwas</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/pwas/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/pwas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>service workers</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/service-workers/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/service-workers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web bluetooth</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/web-bluetooth/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/web-bluetooth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web share</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/web-share/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/web-share/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>automation</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/automation/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/python/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>selenium</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/selenium/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/selenium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web scraping</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/web-scraping/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/web-scraping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/http/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/http/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spdy</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/spdy/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/spdy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http/1.1</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/http/1.1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/http/1.1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http/2</title>
+      <link>https://smithsa.github.io/smithsa-hugo/tags/http/2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/tags/http/2/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - 10 Tips for Web Accessibility (Part 1) </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/smithsa-hugo/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/smithsa-hugo/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="Following the best practices for accessibility means you will be adhering to the best practices of the web. In this two-part series, I will be giving some practical development tips based on recommendations from the Web Content Accessibility Guidelines (WCAG) that you can use to develop more accessible websites."/>
+    <meta property="og:title" content="10 Tips for Web Accessibility (Part 1)"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/smithsa-hugo/posts/tips-for-web-accessiblity-part-1/"/>
+    
+    <meta property="og:description" content="Following the best practices for accessibility means you will be adhering to the best practices of the web. In this two-part series, I will be giving some practical development tips based on recommendations from the Web Content Accessibility Guidelines (WCAG) that you can use to develop more accessible websites."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/smithsa-hugo/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/smithsa-hugo/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>10 Tips for Web Accessibility (Part 1)<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>The benefits of developing accessible websites undoubtedly outweigh the costs. First and foremost, all potential users are able to use your web application. Users with disabilities will be able to access information and perform tasks just as those without disabilities. Secondly, accessibility (a11y) best practices share similar practices with other web related best practices such as search engine optimization (SEO) and usability standards. Following the best practices for accessibility means you will be following the best practices of the web. In this two-part series, I will be giving some practical development tips based on recommendations from the Web Content Accessibility Guidelines (WCAG) that you can use to develop more accessible websites.</p>
+<h2 id="1-use-native-html-elements-properly">1. Use Native HTML Elements Properly</h2>
+<p>It is important that you use native HTML elements because they have accessibility benefits built-in. For example, using the button tag allows a button to be automatically indexed with the tab button and activated using the keyboard. If you were to not use the button tag and create your own button with a custom tag or div these benefits would not be afforded to you. Don’t recreate the wheel unless you have an extremely good reason. If you decide to create your own custom elements be sure to create keyboard accessibility and provide a tabindex attribute of 0.</p>
+<p>In addition, your HTML should be written in a way that conveys the semantics of a given page. Good semantics help assistive technology devices, such as screen readers, perform their jobs by giving them a map of what is being parsed. You should consider using HTML5 semantic elements like header, nav, footer, aside, article, and section to structure your pages. Also, strive to use and structure these HTML elements correctly. Inconsistencies or improper structuring of your HTML can confuse and throw screen readers off.</p>
+<h2 id="2-use-appropriate-html-heading-tags">2. Use Appropriate HTML Heading Tags</h2>
+<p>Along similar lines of the tip #1, you should use the appropriate HTML heading tag and ensure the correct order. With <!-- raw HTML omitted -->h1<!-- raw HTML omitted --> being the highest section level heading and <!-- raw HTML omitted -->h6<!-- raw HTML omitted --> being the lowest. In the scenarios that your designs do not contain a heading, you can add a header that describes the sections succinctly and then style the heading so that it does not visually appear on the screen. Adding heading tags allows assistive technology devices to understand what is on the page and are good for but also SEO. I like to use a special class for these instances (see example below).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">a11y-hidden</span><span class="p">{</span>
+	<span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+	<span class="k">z-index</span><span class="p">:</span> <span class="mi">-9999</span><span class="p">;</span>
+	<span class="k">width</span><span class="p">:</span><span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+	<span class="k">height</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span><span class="p">;</span>
+	<span class="k">font-size</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">border</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+	<span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span>
+	<span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="3-use-background-images-for-decorative-images">3. Use Background Images for Decorative Images</h2>
+<p>Some designs have images that don’t convey any information to the user and are there for style or decorative purposes. These images should be displayed using the CSS <!-- raw HTML omitted -->background-image<!-- raw HTML omitted --> property if possible. If you determine that an image tag is needed, then make sure that the <!-- raw HTML omitted -->alt<!-- raw HTML omitted -->  attribute is empty so that screen readers can skip over reading the image.</p>
+<h2 id="4-dont-remove-css-outline">4. Don’t Remove CSS Outline</h2>
+<p>There are times when you create a link or a button and see a blue glowing outline on your element. Sometimes it clashes with the overall design, so to remove it developers change the outline CSS property to none. It’s a big accessibility no-no. It makes it difficult for those who do not use a mouse to see where they are currently at on a page if they are for instance tabbing through. In the cases, that you do decide that you can’t have that blue glow, go ahead and use <!-- raw HTML omitted -->outline: none<!-- raw HTML omitted --> in your CSS but also style the focused (:focus) state of the element in a way that clearly shows that it is selected. It is a good practice to style your focus states the same as your hover state.</p>
+<h2 id="5-always-use-a-meta-viewport-tag">5. Always Use a Meta Viewport Tag</h2>
+<p>Using a meta viewport tag is probably the easiest tip in this post to implement. If your website is missing this tag, mobile devices will render the pages at desktop widths, then scale the page for the mobile device. So the meta viewport tag will ensure that the page fits the width of the device. Google recommends using the following meta tag in the head of your pages:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  ...
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1&#34;</span><span class="p">&gt;</span>
+  ...
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></div><h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>As you can see, these are very simple tips to implement in your website to make them more accessible and provide an overall improvement. The best part, there’s More! Stay tuned for part 2, where we will continue going over practical tips for developing accessible websites. Getting into more accessibility principles, I will be touching upon ARIA, skip links, form labels, and font sizes.</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/smithsa-hugo/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>

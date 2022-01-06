@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - Replicating Youtube App&#39;s Double Tap to Seek Feature </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/smithsa-hugo/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/smithsa-hugo/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser."/>
+    <meta property="og:title" content="Replicating Youtube App&#39;s Double Tap to Seek Feature"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/smithsa-hugo/posts/replicating-youtube-apps-double-tap-to-seek-feature/"/>
+    
+    <meta property="og:description" content="Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/smithsa-hugo/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/smithsa-hugo/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>Replicating Youtube App&#39;s Double Tap to Seek Feature<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser. It’s a feature on the Youtube mobile application app that allows the user to forward the video if the right side of the video is double tapped and rewind the video if the left side is double tapped. It’s a nifty feature that I didn’t know existed before I saw the question since I don’t use Youtube on my phone much but I thought it would be cool to build with JavaScript. In this post, I will demonstrate how to implement such a feature using HTML, CSS, and vanilla JavaScript.</p>
+<h2 id="the-objective">The Objective</h2>
+<p>I explained the basic functionality in the introduction, but I think it will be helpful to have a visual example of what we are building. I’ve posted two gifs below which demonstrate the double tap feature of the Youtube mobile application on an iPhone. In the visual aid, you will see that two taps on the left of the screen will rewind the video ten seconds and two taps to the right of the screen will fast-forward the video ten seconds. Additionally, for every consecutive double tap, the effect is cumulative and the amount of seconds to forward or rewind is multiplied. For example, three double taps to the right of the video will forward the video ahead thirty seconds. Our version of this feature will work similarly except it will seek on double click instead of a double tap since we will be developing this for the web.</p>
+<p><img src="/images/posts/youtube-double-tap-feature/rewind-double-tap.gif" alt="rewind double tap feature">
+<img src="/images/posts/youtube-double-tap-feature/forward-double-tap.gif" alt="forward double tap feature"></p>
+<h2 id="the-structure">The Structure</h2>
+<p>The structure will be fairly simple. Deconstructing the feature, we can break the elements down to the video player, (2) the rewind UI (user interface) indicator, and the forward UI indicator. I will nest all these elements inside a div with the class name of “video-player.” We’ll add an HTML5 video player, and have a few divs for the forward and rewind indicators. It’s important to note that the video player has it’s built-in controls disabled since double tapping a video element will cause the video to enter the fullscreen mode.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;video-container&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">video</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;player__video viewer&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;video-rewind-notify rewind notification&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;rewind-icon icon&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;left-triangle triangle&#34;</span><span class="p">&gt;</span>◀◀◀<span class="p">&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;rewind&#34;</span><span class="p">&gt;</span>10 seconds<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;video-forward-notify forward notification&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;forward-icon icon&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;right-triangle triangle&#34;</span><span class="p">&gt;</span>▶▶▶<span class="p">&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;forward&#34;</span><span class="p">&gt;</span>10 seconds<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><h2 id="the-styles">The Styles</h2>
+<p>I’ll add some basic styles to the video player. The main thing that will be styled is the ripple effect when a user double taps the video and displays how much the video will be rewound or forwarded. Using CSS animations I can replicate the ripple effect that YouTube has. The rest of the styles will be to position the video for purposes of the demo. I&rsquo;ve just created some quick and dirty styling that you can grab from the <!-- raw HTML omitted -->Codepen<!-- raw HTML omitted -->.
+I&rsquo;ll go more in detail in this post about the Javascript.</p>
+<h2 id="the-javascript">The JavaScript</h2>
+<p>The fun part of implementing the YouTube double tap to rewind/forward will be the JavaScript. Everything has been set up, now we can get the feature working!</p>
+<p>The first thing we will do is grab the DOM elements we will need to manipulate. For our purposes that will be (1) the HTML5 video element, (2) the forward and rewind ripple notifications which are the visual indicators of if a double click has occurred, and (3) the span elements which show the rate at which the video will be rewound and forwarded.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//grab the video dom element
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">video</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;video&#39;</span><span class="p">);</span> 
+<span class="kr">const</span> <span class="nx">notifications</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.notification&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">forwardNotificationValue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.video-forward-notify span&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">rewindNotificationValue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;.video-rewind-notify span&#39;</span><span class="p">);</span>
+</code></pre></div><h3 id="double-click">Double Click</h3>
+<p>Next, we want to detect if the user double-clicks the left and right side of the video element. An event handler for double click should be added to the video player DOM element. I found it hard to visually distinguish between a double click and a single click since a single click is required for the double click. So we’ll add an additional event handler to the video on click that will toggle the pause and play actions on the video.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">togglePlay</span><span class="p">(){</span>
+  <span class="nx">video</span><span class="p">.</span><span class="nx">paused</span> <span class="o">?</span> <span class="nx">video</span><span class="p">.</span><span class="nx">play</span><span class="p">()</span> <span class="o">:</span> <span class="nx">video</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//Event Listeners
+</span><span class="c1"></span><span class="nx">video</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">togglePlay</span><span class="p">);</span>
+</code></pre></div><p>Now that the toggle play has been added, we can move towards handling the double click event. First, we will create a function that will be the callback for the double click event handler that detects if the left side of the video was clicked or the right side. We’ll pass the function to the handler. From the event, we can use <code>offsetX</code> to help determine what side of the video is clicked. It will give us the X coordinate of the mouse pointer at the time of the double click, relative to the video. We can take the value of the X coordinate and compare it to the width of the video halved (<code>video.offsetWidth/2</code>). If the X coordinate is less than half of the video’s width then we know the left side of the video was clicked. However, if the X coordinate is greater than half the width of the video then we can assume the right side of the video was clicked. So I’ll create two more functions called <code>forwardVideo()</code> and <code>rewindVideo()</code> and call them accordingly, based on the logic I’ve defined above.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">forwardVideo</span><span class="p">(){</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">rewindVideo</span><span class="p">(){</span>
+<span class="p">}</span>
+
+<span class="c1">//Event Handlers
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">doubleClickHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+    <span class="kr">const</span> <span class="nx">videoWidth</span> <span class="o">=</span> <span class="nx">video</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+    <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">&lt;</span> <span class="nx">videoWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">?</span> <span class="nx">rewindVideo</span><span class="p">()</span> <span class="o">:</span> <span class="nx">forwardVideo</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nx">video</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">doubleClickHandler</span><span class="p">);</span>
+</code></pre></div><p>We will leave the <code>forwardVideo()</code> and <code>rewindVideo()</code> functions empty for now and work on a function to handle the forwarding and rewinding of the video element. It will be called <code>updateCurrentTime</code>. It will take one parameter, which will be the number of seconds to rewind or forward the video. We will also want to define variables outside the function which will be accumulators that keeps track of how far the user wants to forward or rewind based on their clicks (<code>forwardSpeed</code> and <code>rewindSpeed</code>), and declare a variable named <code>timer</code> to reference a setTimeout function we will use to track consecutive double clicks.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="nx">delta</span><span class="p">){</span>
+    
+<span class="p">}</span>
+</code></pre></div><h3 id="seeking">Seeking</h3>
+<p>Let’s get building within the function. Since the parameter is the number of seconds to forward or rewind we can detect what the user intends to do by seeing if the variable delta is less than or greater than zero. If it is less than zero then we know the user is rewinding, and if greater than zero then it is the case the user intends to forward the video. With this information, we can calculate the number of seconds to forward or rewind the video using our accumulator variables and the delta variable. We will simply increment the accumulator variables by the delta. If the video is rewinding we will set the <code>forwardSpeed</code> variable which the amount to change the video to zero since the variable no longer needs to be incremented because the user is not consecutively clicking the left side of the video and vice versa.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="nx">delta</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">isRewinding</span> <span class="o">=</span> <span class="nx">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>
+      
+    <span class="k">if</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="nx">rewindSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="nx">forwardSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>Based on this information we will update the current time of the video by incrementing it by the forward or rewind speed. In addition, we will update the value on the UI indicator that tells the user how many seconds the video is being forwarded or rewound as well. Basically, we will update the innerHTML on the element and take the absolute value of the speed and add it’s value to a template literal.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="nx">delta</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">isRewinding</span> <span class="o">=</span> <span class="nx">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>
+      
+    <span class="k">if</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="nx">rewindSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="nx">forwardSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindSpeed</span> <span class="o">:</span> <span class="nx">forwardSpeed</span><span class="p">);</span>
+    <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="nx">speed</span><span class="p">;</span>
+      
+    <span class="kd">let</span> <span class="nx">NotificationValue</span> <span class="o">=</span>  <span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindNotificationValue</span> <span class="o">:</span> <span class="nx">forwardNotificationValue</span> <span class="p">;</span>
+    <span class="nx">NotificationValue</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span><span class="si">}</span><span class="sb"> seconds`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>To help us detect if there are consecutive double clicks we will use the <code>setTimeout</code> function. Essentially whenever the <code>updateCurrentTime</code> function is called on the double click we are incrementing the speed to forward or rewind the video by incrementing the <code>rewindSpeed</code> and <code>forwardSpeed</code> speeds by the <code>delta</code> variable. We will make it so that within two seconds the <code>forwardSpeed</code> and <code>rewindSpeed</code> will be set to zero.  The variable <code>timer</code> will be set to the <code>setTimeOut</code> function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="nx">delta</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">isRewinding</span> <span class="o">=</span> <span class="nx">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>
+      
+    <span class="k">if</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="nx">rewindSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="nx">forwardSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindSpeed</span> <span class="o">:</span> <span class="nx">forwardSpeed</span><span class="p">);</span>
+    <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="nx">speed</span><span class="p">;</span>
+      
+    <span class="kd">let</span> <span class="nx">NotificationValue</span> <span class="o">=</span>  <span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindNotificationValue</span> <span class="o">:</span> <span class="nx">forwardNotificationValue</span> <span class="p">;</span>
+    <span class="nx">NotificationValue</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span><span class="si">}</span><span class="sb"> seconds`</span><span class="p">;</span>
+    
+    <span class="c1">//reset accumulator within 2 seconds of a double click
+</span><span class="c1"></span>    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span> <span class="c1">// you can edit this delay value for the timeout, i have it set for 2 seconds
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>The last part of this step is to add a clearTimeOut right before we update the video. This way the variables <code>forwardSpeed</code> and <code>rewindSpeed</code> will not be reset to zero on consecutive double clicks and will instead be incremented by the <code>delta</code> variable.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">timer</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="nx">delta</span><span class="p">){</span>
+    <span class="kd">let</span> <span class="nx">isRewinding</span> <span class="o">=</span> <span class="nx">delta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>
+      
+    <span class="k">if</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="nx">rewindSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="nx">forwardSpeed</span> <span class="o">+</span> <span class="nx">delta</span><span class="p">;</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//clear the timeout
+</span><span class="c1"></span>    <span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+    
+    <span class="kd">let</span> <span class="nx">speed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindSpeed</span> <span class="o">:</span> <span class="nx">forwardSpeed</span><span class="p">);</span>
+    <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">+</span> <span class="nx">speed</span><span class="p">;</span>
+      
+    <span class="kd">let</span> <span class="nx">NotificationValue</span> <span class="o">=</span>  <span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">rewindNotificationValue</span> <span class="o">:</span> <span class="nx">forwardNotificationValue</span> <span class="p">;</span>
+    <span class="nx">NotificationValue</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">speed</span><span class="p">)</span><span class="si">}</span><span class="sb"> seconds`</span><span class="p">;</span>
+    
+    <span class="c1">//reset accumulator within 2 seconds of a double click
+</span><span class="c1"></span>    <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+      <span class="nx">rewindSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nx">forwardSpeed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span> <span class="c1">// you can edit this delay value for the timeout, i have it set for 2 seconds
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>The <code>updateCurrentTime</code> function is now fully built out. We will call it in the <code>forwardVideo</code> and <code>rewindVideo</code> functions. On the forward function, <code>updateCurrentTime</code>  will take a parameter of 10 since we want to increment by 10 seconds and -10 on the rewind function since we want to decrement by 10 seconds.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">forwardVideo</span><span class="p">(){</span>
+  <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">rewindVideo</span><span class="p">(){</span>
+    <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="adding-the-animations">Adding the Animations</h3>
+<p>The functionality of double-clicking to forward and rewind is working now! But we need to do one more thing, which is to animate an indicator in to show that the video’s current time is updating. Additionally, we need to animate the indicator out. We already have a CSS animations added to a class on the notification DOM elements called <code>animate-in</code>. When added to a notification DOM element it will fade the notification in and when the class is removed it will fade it out.</p>
+<p>So let’s create two functions, one to animate the notifications in and one to indicate the notifications out. We will name them <code>animateNotificationIn</code> and <code>animateNotificationOut</code>. The <code>animateNotificationIn</code> will take one parameter which will be a boolean that tells the function if the video is being rewound. The <code>animateNotificationOut</code> function will be put on an event listener and will be called when a notification DOM element’s CSS animation ends.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">animateNotificationIn</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">animateNotificationOut</span><span class="p">(){</span>
+<span class="p">}</span>
+</code></pre></div><p>In <code>animateNotificationIn</code>, if the user wants to rewind the video we will grab the rewind notification DOM element (which is at index 0 of <code>notifications</code>) and add the class <code>animateIn</code> to the element. Otherwise, we will grab the forward notification DOM element (which is at index 1 of <code>notifications</code>) and add the class <code>animateIn</code> to the element.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">animateNotificationIn</span><span class="p">(</span><span class="nx">isRewinding</span><span class="p">){</span>
+  <span class="nx">isRewinding</span> <span class="o">?</span> <span class="nx">notifications</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate-in&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="nx">notifications</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate-in&#39;</span><span class="p">);</span> 
+<span class="p">}</span>
+</code></pre></div><p>For the <code>animateNotificationOut</code> since we are adding it on an event listener we will just reference <code>this</code> for the element within the function and remove the <code>animateIn</code> class.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">animateNotificationOut</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;animate-in&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">notifications</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">notification</span><span class="p">){</span>
+  <span class="nx">notification</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;animationend&#39;</span><span class="p">,</span> <span class="nx">animateNotificationOut</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><p>Finally we will call the <code>animateNotificationIn</code> function in both the <code>forwardVideo</code> and <code>rewindVideo</code> functions. The call to <code>animateNotificationIn</code> in <code>forwardVideo</code> will have a parameter of false, denoting we want to forward the video. The call to <code>animateNotificationIn</code> in <code>rewindVideo</code> will have a parameter of true, denoting we want to forward the video. On the notification DOM elements that we grabbed earlier we will add the function to an <code>animationend</code> event listener.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">forwardVideo</span><span class="p">(){</span>
+  <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="nx">animateNotificationIn</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">rewindVideo</span><span class="p">(){</span>
+    <span class="nx">updateCurrentTime</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nx">animateNotificationIn</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="wrapping-it-up">Wrapping it up</h2>
+<p>Voila! We have replicated similar functionality to Youtube’s video play on its mobile application! A demo of the functionality can be seen below. When we double tap the left side of the screen the video is rewound and if the right side is double tap the video is forwarded. In addition, consecutive taps increment the amount the video will be forwarded or rewound. If you are interested in seeing the complete source code for this tutorial, you can find it on CodePen titled <a href="https://codepen.io/smithsa/pen/ZmWMxy">“HTML5 Video Double Click to Seek”</a>.</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/smithsa-hugo/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>

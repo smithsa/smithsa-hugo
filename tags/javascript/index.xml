@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Sade Smith</title>
+    <link>https://smithsa.github.io/smithsa-hugo/tags/javascript/</link>
+    <description>Recent content in javascript on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/smithsa-hugo/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Replicating Youtube App&#39;s Double Tap to Seek Feature</title>
+      <link>https://smithsa.github.io/smithsa-hugo/posts/replicating-youtube-apps-double-tap-to-seek-feature/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/posts/replicating-youtube-apps-double-tap-to-seek-feature/</guid>
+      <description>Introduction Not long ago, I was on StackOverflow and I ran across a question asking if anyone knew of a library or how to implement Youtube’s double tap to rewind and forward feature in a browser. It’s a feature on the Youtube mobile application app that allows the user to forward the video if the right side of the video is double tapped and rewind the video if the left side is double tapped.</description>
+    </item>
+    
+    <item>
+      <title>Building a Train Tracking Alexa Skill with ASK Node.js SDK</title>
+      <link>https://smithsa.github.io/smithsa-hugo/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</link>
+      <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/</guid>
+      <description>Introduction I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold is the worst part about the winter for me. For the last few weeks, I have found myself in the predicament where I leave the house and get to the train station only to find that the train is delayed or the next train is 15 minutes away.</description>
+    </item>
+    
+    <item>
+      <title>3 Browser APIs to be Excited About</title>
+      <link>https://smithsa.github.io/smithsa-hugo/posts/browser-apis-to-be-excited-about/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/posts/browser-apis-to-be-excited-about/</guid>
+      <description>Introduction Each year web technologies push the boundaries of what was thought possible. The gap between native and web applications steadily narrows as browsers introduce new web/browser application programming interfaces (APIs). Evidence of this is seen in the standardization of browser APIs like Geolocation and AmbientLightSensor. These APIs remove capability barriers by providing access to device hardware. Additionally, we can see APIs like Web Storage and IndexedDB adding a performance boost by storing data on the client-side.</description>
+    </item>
+    
+  </channel>
+</rss>

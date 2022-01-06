@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>payment requests on Sade Smith</title>
+    <link>https://smithsa.github.io/smithsa-hugo/tags/payment-requests/</link>
+    <description>Recent content in payment requests on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/smithsa-hugo/tags/payment-requests/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3 Browser APIs to be Excited About</title>
+      <link>https://smithsa.github.io/smithsa-hugo/posts/browser-apis-to-be-excited-about/</link>
+      <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/posts/browser-apis-to-be-excited-about/</guid>
+      <description>Introduction Each year web technologies push the boundaries of what was thought possible. The gap between native and web applications steadily narrows as browsers introduce new web/browser application programming interfaces (APIs). Evidence of this is seen in the standardization of browser APIs like Geolocation and AmbientLightSensor. These APIs remove capability barriers by providing access to device hardware. Additionally, we can see APIs like Web Storage and IndexedDB adding a performance boost by storing data on the client-side.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - Building a Train Tracking Alexa Skill with ASK Node.js SDK </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/smithsa-hugo/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/smithsa-hugo/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold and freezing winds ..."/>
+    <meta property="og:title" content="Building a Train Tracking Alexa Skill with ASK Node.js SDK"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/smithsa-hugo/posts/building-a-train-tracking-alexa-skill-with-ask-node-js-sdk/"/>
+    
+    <meta property="og:description" content="I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold and freezing winds ..."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/smithsa-hugo/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/smithsa-hugo/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>Building a Train Tracking Alexa Skill with ASK Node.js SDK<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>I rarely have any issues with not having a car while living in the city. Except when winter rolls around. Waiting for the train to come in the cold is the worst part about the winter for me. For the last few weeks, I have found myself in the predicament where I leave the house and get to the train station only to find that the train is delayed or the next train is 15 minutes away. With the temperature around the 30s and 40s, there have been some uncomfortable waits. The clear solution to this problem is to check when the train is coming through an app like “Transit Track” or the “CTA Train Tracker&quot; website. But I am usually rushing out in the morning and I seldom look at my phone or use my computer before work.</p>
+<p>However, the one electronic device that I routinely use in the morning is my Echo Dot! Whether it’s checking the weather, seeing what’s on my schedule, adding items to my shopping list, or getting the time, it is always faster for me using the Echo than doing all these tasks on my phone. It also gives me the ability to multitask on my way out the door because my hands are free and I only need to use my voice. So clearly the solution to my problem is an Alexa Skill. There are definitely skills that exist that track trains in Chicago but I haven’t found one that I liked or was easy to use. So I decided to build a skill that would basically give me the estimated time of arrivals for the next two approaching trains near my house, and have the skill live locally on my Echo devices. In this blog post, I will share how I accomplished building a train tracking Alexa Skill. My objective of this post is to show you how I made the skill, so essentially it is a walkthrough of its development.</p>
+<h2 id="the-goal">The Goal</h2>
+<p>Basically, the goal will be to build a skill that tells me the estimated time of arrival for the next two approaching trains. If you are curious about the final product a demo you can view it below.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/SKBHk-v7yr8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="the-requirements">The Requirements</h2>
+<ol>
+<li>
+<p>The skill should return the estimated time of arrival of the next two trains closest to my home. But also how far the next trains are in terms of minutes. For example, if I request information at 12:00 pm and the next train is scheduled to arrive at 12:15 pm, the skill should tell me that the next train will arrive at 12:15 pm and is 15 minutes away.</p>
+</li>
+<li>
+<p>The skill should notify me if the train is currently approaching the station. This lets me know if I should focus on catching the next train.</p>
+</li>
+<li>
+<p>The skill should notify me if the train is delayed. This information will let me determine if I have more time to catch the next train, and should expect a longer wait time. This is important because I don’t want to be waiting for more than I have to.</p>
+</li>
+<li>
+<p>The skill should give me train information based on the direction I specify I am going in. I should be able to tell the skill that I am going east, and it should only give me information about the next two trains going east to the city.</p>
+</li>
+<li>
+<p>The input phrases (utterances) of the skill be as short as possible. I detest giving my Echo Dot, also known as Alexa, long instructions with many syllables (which is why I changed my wake word to Echo from Alexa, 2 syllables versus 3).</p>
+</li>
+</ol>
+<h2 id="the-voice-interaction-design">The Voice Interaction Design</h2>
+<p>Before you build anything, it’s always a good idea to design it first on paper and flush everything out. The first step to creating an Alexa Skill is to always start with the voice interaction design. I am going to give the skill the name CTA (an acronym for the Chicago Transit Authority), it’s simple enough to say and remember. So based on one of my requirement above, if I were to specify that I was going to the east, the script of the skill interaction should go something like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">Me: Echo, tell the CTA I’m going east
+Echo: The next train towards the city is 12 minutes away, and due to arrive at 7:05 PM. There is a following train 27 minutes away, and due to arrive at 7:20 PM.
+</code></pre></div><p>Additionally, the interaction can go like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html">Me: Echo, tell the CTA I’m going to the city
+Echo: The next train towards the city is 12 minutes away, and due to arrive at 7:05 PM. There is a following train 27 minutes away, and due to arrive at 7:20 PM.
+</code></pre></div><h2 id="development">Development</h2>
+<p>I’ll walk you through how I developed the skill in this section. You can view the source code of the train tracker in the repository called <a href="https://github.com/smithsa/train-arrival-times">train-arrival-times</a>.</p>
+<h2 id="retrieving-the-the-train-arrival-data">Retrieving the the Train Arrival Data</h2>
+<p>Now the fun part, the development of the skill! I need an API service to get me the information of the approaching trains. Luckily, the Chicago Transit Authority (CTA) has me covered with the <a href="https://www.transitchicago.com/developers/traintracker/">Train Tracker API</a>. Information in the API comes from data fed to CTA from its rail infrastructure, so I am sure to get accurate estimates. According to the Train Tracker API documentation, I only need to make one HTTP GET request to obtain the data I need to the following endpoint:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">https://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=[your_api_key]&amp;&amp;mapid=[your_station_id]
+</code></pre></div><p>This call should return to me a response in XML that looks something this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;ctatt&gt;</span>
+<span class="nt">&lt;tmst&gt;</span>20110321 18:32:02<span class="nt">&lt;/tmst&gt;</span>
+<span class="nt">&lt;errCd&gt;</span>0<span class="nt">&lt;/errCd&gt;</span>
+<span class="nt">&lt;errNm</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;eta&gt;</span>
+<span class="nt">&lt;staId&gt;</span>40360<span class="nt">&lt;/staId&gt;</span>
+<span class="nt">&lt;stpId&gt;</span>30071<span class="nt">&lt;/stpId&gt;</span>
+<span class="nt">&lt;staNm&gt;</span>Southport<span class="nt">&lt;/staNm&gt;</span>
+<span class="nt">&lt;stpDe&gt;</span>Service toward Loop<span class="nt">&lt;/stpDe&gt;</span>
+<span class="nt">&lt;rn&gt;</span>426<span class="nt">&lt;/rn&gt;</span>
+<span class="nt">&lt;rt&gt;</span>Brn<span class="nt">&lt;/rt&gt;</span>
+<span class="nt">&lt;destSt&gt;</span>31740<span class="nt">&lt;/destSt&gt;</span>
+<span class="nt">&lt;destNm&gt;</span>Loop<span class="nt">&lt;/destNm&gt;</span>
+<span class="nt">&lt;trDr&gt;</span>5<span class="nt">&lt;/trDr&gt;</span>
+<span class="nt">&lt;prdt&gt;</span>20110321 18:31:29<span class="nt">&lt;/prdt&gt;</span>
+<span class="nt">&lt;arrT&gt;</span>20110321 18:34:29<span class="nt">&lt;/arrT&gt;</span>
+<span class="nt">&lt;isApp&gt;</span>0<span class="nt">&lt;/isApp&gt;</span>
+<span class="nt">&lt;isSch&gt;</span>0<span class="nt">&lt;/isSch&gt;</span>
+<span class="nt">&lt;isFlt&gt;</span>0<span class="nt">&lt;/isFlt&gt;</span>
+<span class="nt">&lt;isDly&gt;</span>0<span class="nt">&lt;/isDly&gt;</span>
+<span class="nt">&lt;flags/&gt;</span>
+ <span class="nt">&lt;lat&gt;</span>41.97776<span class="nt">&lt;/lat&gt;</span>
+ <span class="nt">&lt;lon&gt;</span>-87.77567<span class="nt">&lt;/lon&gt;</span>
+ <span class="nt">&lt;heading&gt;</span>299<span class="nt">&lt;/heading&gt;</span>
+<span class="nt">&lt;/eta&gt;</span>
+<span class="nt">&lt;/ctatt&gt;</span>
+</code></pre></div><p>I will need to create some helper functions to assist me in parsing the data that I need. I will create a file called <code>helper.js</code> that I will import into my main <code>index.js</code> file later.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">xml2js</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;xml2js&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">HelperFunctions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">};</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">HelperFunctions</span><span class="p">;</span>
+</code></pre></div><p>The first function I want to create is a function that parses XML data into a javascript object. I will use the <code>http</code> and <code>xml2js</code> node libraries to help me accomplish this. The function will take a string URL of an XML feed as a parameter and return a Promise that resolves the javascript object of the converted XML data.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">xml2js</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;xml2js&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;https&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">HelperFunctions</span> <span class="o">=</span> <span class="p">{</span>
+<span class="s1">&#39;getJsonObjectFromXMLFeed&#39;</span><span class="o">:</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">xmlUrl</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="c1">// A promise which makes a call to the api and waits for data
+</span><span class="c1"></span>   <span class="kd">let</span> <span class="nx">ctaArrivalTimes</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">https</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">xmlUrl</span><span class="p">,</span> <span class="p">(</span><span class="nx">resp</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+           <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+           <span class="c1">// A chunk of data has been received.
+</span><span class="c1"></span>           <span class="nx">resp</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+               <span class="nx">data</span> <span class="o">+=</span> <span class="nx">chunk</span><span class="p">;</span>
+           <span class="p">});</span>
+           <span class="c1">// The whole response has been received. Print out the result.
+</span><span class="c1"></span>           <span class="nx">resp</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+               <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+           <span class="p">});</span>
+
+       <span class="p">}).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+           <span class="nx">reject</span><span class="p">(</span><span class="s2">&#34;Error: &#34;</span> <span class="o">+</span> <span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+       <span class="p">});</span>
+
+   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">xmlArrivalTimes</span><span class="p">){</span>
+       <span class="kd">let</span> <span class="nx">xmlStringResult</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+       <span class="nx">xml2js</span><span class="p">.</span><span class="nx">parseString</span><span class="p">(</span><span class="nx">xmlArrivalTimes</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">xmlStringResult</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+       <span class="p">});</span>
+       <span class="k">return</span> <span class="nx">xmlStringResult</span><span class="p">;</span>
+   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">jsonArrivalTimes</span><span class="p">){</span>
+       <span class="k">return</span> <span class="nx">jsonArrivalTimes</span><span class="p">;</span>
+   <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">errorMsg</span><span class="p">){</span>
+       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorMsg</span><span class="p">);</span>
+   <span class="p">});</span>
+
+   <span class="k">return</span> <span class="nx">ctaArrivalTimes</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">HelperFunctions</span><span class="p">;</span>
+</code></pre></div><h2 id="handling-the-train-arrival-data">Handling the Train Arrival Data</h2>
+<p>The data given to me by the CTA that I can use for my purposes includes (1) the platform of the train (stpDe), so the direction the train is going to, (2) a date-time format stamp for when the prediction (prdt), (3) a date-time format stamp for when a train is expected to arrive/depart (arrT) (4) whether the train is currently approaching the station which is a 0 or 1(isApp), and (5) if the train is delayed which is a 0 or 1 (isDly).</p>
+<p>I’ll want helper functions to handle the time data I have received from the API in particular. I want to know how much of a wait time I have until the next train so I definitely want to get the time difference between two times. I will get the time difference in milliseconds and add the following function to <code>HelperFunctions</code> in my <code>helper.js</code> file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;getTimeDifference&#39;</span><span class="o">:</span>  <span class="p">(</span><span class="nx">time1</span><span class="p">,</span> <span class="nx">time2</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">split_time1</span> <span class="o">=</span> <span class="nx">time1</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">start1</span> <span class="o">=</span> <span class="nx">split_time1</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+   <span class="kd">let</span> <span class="nx">end1</span> <span class="o">=</span> <span class="nx">split_time1</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+   <span class="kd">let</span> <span class="nx">split_time2</span> <span class="o">=</span> <span class="nx">time2</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">start2</span> <span class="o">=</span> <span class="nx">split_time2</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+   <span class="kd">let</span> <span class="nx">end2</span> <span class="o">=</span> <span class="nx">split_time2</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+   <span class="kd">var</span> <span class="nx">date1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+   <span class="nx">date1</span><span class="p">.</span><span class="nx">setHours</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">start1</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+   <span class="nx">date1</span><span class="p">.</span><span class="nx">setMinutes</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">end1</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+
+   <span class="kd">var</span> <span class="nx">date2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+   <span class="nx">date2</span><span class="p">.</span><span class="nx">setHours</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">start2</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+   <span class="nx">date2</span><span class="p">.</span><span class="nx">setMinutes</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">end2</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+
+   <span class="k">return</span> <span class="nx">date2</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">date1</span><span class="p">.</span><span class="nx">getTime</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div><p>Since the function above returns milliseconds, I want a function to convert milliseconds to minutes. This will be useful for my purposes when I calculate how far the train is away later.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;convertMillisecondsToMinutes&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">millseconds</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span><span class="nx">millseconds</span> <span class="o">*</span> <span class="mf">0.001</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>But what if the time span if greater than 60 minutes and is something like 90 minutes. I don’t want to hear that my train is 90 minutes away. I would want to hear something like your train is an hour and a half. That is easier to comprehend. So for scenarios like this, I will add a function to the <code>HelperFunctions</code> called <code>minutesToHumanHearable</code> (I wonder if human hearable is a thing).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;minutesToHumanHearable&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">input_minutes</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="nx">input_minutes</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">){</span>
+       <span class="k">return</span> <span class="nx">input_minutes</span> <span class="o">+</span> <span class="p">(</span><span class="nx">input_minutes</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39; minute&#39;</span> <span class="o">:</span> <span class="s1">&#39; minutes&#39;</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="kd">let</span> <span class="nx">hours</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input_minutes</span> <span class="o">/</span> <span class="mi">60</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">rhours</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">hours</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="p">(</span><span class="nx">hours</span> <span class="o">-</span> <span class="nx">rhours</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span><span class="p">;</span>
+   <span class="kd">let</span> <span class="nx">rminutes</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">minutes</span><span class="p">);</span>
+   <span class="k">return</span> <span class="nx">rhours</span> <span class="o">+</span> <span class="p">(</span><span class="nx">rhours</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39; hour&#39;</span><span class="o">:</span> <span class="s1">&#39; hours&#39;</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39; and &#39;</span> <span class="o">+</span> <span class="nx">rminutes</span> <span class="o">+</span> <span class="p">(</span><span class="nx">rminutes</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39; minute&#39;</span> <span class="o">:</span> <span class="s1">&#39; minutes&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>Lastly, I want the ability to convert a time string which is in a 24-hour time format into the standard 12-hour format. So I will create a function called <code>convertMiltaryTimeToStandardTime</code>, this function takes in a string time format on the 24-hour clock and will return a string on the 12-hour clock.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="s1">&#39;convertMiltaryTimeToStandardTime&#39;</span><span class="o">:</span> <span class="p">(</span><span class="nx">timeString</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">splitTimeString</span> <span class="o">=</span> <span class="nx">timeString</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">hour</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">splitTimeString</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">minutes</span> <span class="o">=</span> <span class="nx">splitTimeString</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+   <span class="kd">let</span> <span class="nx">dayPeriod</span> <span class="o">=</span> <span class="p">(</span><span class="nx">hour</span> <span class="o">&gt;=</span> <span class="mi">12</span> <span class="o">&amp;&amp;</span> <span class="nx">hour</span> <span class="o">!==</span> <span class="mi">24</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39; PM&#39;</span> <span class="o">:</span> <span class="s1">&#39; AM&#39;</span><span class="p">;</span>
+   <span class="kd">let</span> <span class="nx">standardHour</span> <span class="o">=</span> <span class="p">(</span><span class="nx">hour</span> <span class="o">&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">hour</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span> <span class="o">:</span> <span class="p">((</span><span class="nx">hour</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">12</span><span class="o">:</span> <span class="nx">hour</span><span class="p">);</span>
+
+   <span class="k">return</span> <span class="nx">standardHour</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="o">+</span><span class="nx">minutes</span><span class="o">+</span><span class="nx">dayPeriod</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+</code></pre></div><p>These functions above should help me parse the data that I get from the CTA. If you want to see the final file you can look in <code>lambda/custom/helper.js</code> for the final file.</p>
+<h2 id="building-the-interaction-model">Building the Interaction Model</h2>
+<p>I’ve gotten the helper functions out the way. Now I should define my interaction model. This is the part where the voice interface that users use to interact with the skill is defined. It lives in a JSON file called <code>en-US.json</code> which is located in the <code>models</code> folder.</p>
+<h3 id="intents">Intents</h3>
+<p>An intent represents an action that fulfills a user&rsquo;s spoken request. The default intents are named: AMAZON.CancelIntent, AMAZON.StopIntent, and AMAZON.HelpIntent in the file. I want a specific intent to get the train estimates so I will create an entry into <code>interactionModel.languageModel.intents</code> named <code>TrainArrivalEstimatesRequest</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+ <span class="nt">&#34;interactionModel&#34;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&#34;languageModel&#34;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="nt">&#34;invocationName&#34;</span><span class="p">:</span> <span class="s2">&#34;cta&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;types&#34;</span><span class="p">:[],</span>
+     <span class="nt">&#34;intents&#34;</span><span class="p">:</span> <span class="p">[</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;AMAZON.CancelIntent&#34;</span><span class="p">,</span>
+         <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+
+         <span class="p">]</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;AMAZON.HelpIntent&#34;</span><span class="p">,</span>
+         <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+
+         <span class="p">]</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;AMAZON.StopIntent&#34;</span><span class="p">,</span>
+         <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+
+         <span class="p">]</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;TrainArrivalEstimatesRequest&#34;</span><span class="p">,</span>
+         <span class="nt">&#34;slots&#34;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">],</span>
+         <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="p">]</span>
+       <span class="p">}</span>
+     <span class="p">]</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="slots-and-types">Slots and Types</h3>
+<p>Let’s talk slots now. Slots are the arguments that an intent receives when the user issues a request. So for my purposes in building this skill the slots I would want two slots, on for east (63rd Street) and one for the west (Harlem) because that is the information I want to give the intent to get my trains’ estimate times of arrival.</p>
+<p>Slot are defined by types. For example, Amazon uses built-in types like <code>AMAZON.DATE</code>, <code>AMAZON.NUMBER</code>, <code>AMAZON.US_CITY</code>. I need to define custom slots for the direction of the trains. I will add two entries into <code>interactionModel.languageModel.types</code>. I will name them <code>WEST_DIRECTION</code> and <code>EAST_DIRECTION</code>. Additionally, I will add synonyms for each direction. See the code below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json">     <span class="s2">&#34;types&#34;</span><span class="err">:</span> <span class="p">[</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[</span>
+           <span class="p">{</span>
+             <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;harlem&#34;</span><span class="p">,</span>
+               <span class="nt">&#34;synonyms&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;harlem&#34;</span><span class="p">,</span> <span class="s2">&#34;work&#34;</span><span class="p">,</span> <span class="s2">&#34;harlem ave&#34;</span><span class="p">,</span> <span class="s2">&#34;harlem and lake&#34;</span><span class="p">,</span> <span class="s2">&#34;west&#34;</span><span class="p">]</span>
+             <span class="p">}</span>
+           <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;WEST_DIRECTION&#34;</span>
+       <span class="p">},</span>
+       <span class="p">{</span>
+         <span class="nt">&#34;values&#34;</span><span class="p">:</span> <span class="p">[</span>
+           <span class="p">{</span>
+             <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="nt">&#34;value&#34;</span><span class="p">:</span> <span class="s2">&#34;63rd Street&#34;</span><span class="p">,</span>
+               <span class="nt">&#34;synonyms&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;63rd&#34;</span><span class="p">,</span> <span class="s2">&#34;63rd street&#34;</span><span class="p">,</span> <span class="s2">&#34;the city&#34;</span><span class="p">,</span> <span class="s2">&#34;east&#34;</span><span class="p">,</span> <span class="s2">&#34;ashland&#34;</span><span class="p">,</span> <span class="s2">&#34;63rd and ashland&#34;</span><span class="p">,</span> <span class="s2">&#34;63rd street and ashland&#34;</span><span class="p">,</span> <span class="s2">&#34;63rd street and ashland avenue&#34;</span><span class="p">]</span>
+             <span class="p">}</span>
+           <span class="p">}</span>
+         <span class="p">],</span>
+         <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;EAST_DIRECTION&#34;</span>
+       <span class="p">}</span>
+     <span class="p">]</span>
+</code></pre></div><p>Now that the slot types are defined, I will add my slots to the intent.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+ <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;TrainArrivalEstimatesRequest&#34;</span><span class="p">,</span>
+ <span class="nt">&#34;slots&#34;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;westDirection&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;WEST_DIRECTION&#34;</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;eastDirection&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;EAST_DIRECTION&#34;</span>
+   <span class="p">}</span>
+ <span class="p">],</span>
+ <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><h3 id="utterances">Utterances</h3>
+<p>The last part to handle in the interaction model is the sample utterance. The sample utterances specify the words and phrases users can say to invoke the intent to get the train estimates. The intent will be mapped to these utterances. Slots are indicated within the utterances with curly brackets. I will add my utterances to the intent. The final intent in the interaction model should look like the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+ <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;TrainArrivalEstimatesRequest&#34;</span><span class="p">,</span>
+ <span class="nt">&#34;slots&#34;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="p">{</span>
+     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;westDirection&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;WEST_DIRECTION&#34;</span>
+   <span class="p">},</span>
+   <span class="p">{</span>
+     <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;eastDirection&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;EAST_DIRECTION&#34;</span>
+   <span class="p">}</span>
+ <span class="p">],</span>
+ <span class="nt">&#34;samples&#34;</span><span class="p">:</span> <span class="p">[</span>
+   <span class="s2">&#34;what is the next train going towards {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;what is the next train going towards {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;what is the next train going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;what is the next train going {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;what is the next train going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;what is the next train going to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when is the next train going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when is the next train going to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when is the next train towards {westDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when is the next train towards {eastDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train towards {westDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train towards {eastDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train toward {westDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train toward {eastDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train to {westDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;when the next train to {eastDirection} is&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train towards {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train towards {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train going towards {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;get the next train going towards {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;{eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;{westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I&#39;m going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I&#39;m going {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I am going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I am going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We are going {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We are going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We&#39;re are going {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We&#39;re are going {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I&#39;m going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I&#39;m going to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I am going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;I am going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We are going to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We are going to {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;We&#39;re are going to {eastDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;To {westDirection}&#34;</span><span class="p">,</span>
+   <span class="s2">&#34;To {eastDirection}&#34;</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="developing-the-intent-logic">Developing the Intent Logic</h2>
+<p>The final step of all this is to develop the logic for the intent. The intent lives in <code>index.js</code> with the other intents. Here I will want to get what slot was spoken by the user then use that information to get the correct train. I will access the slot id by referencing the slots of the intents. I will need to determine if the user is requesting train information for trains heading east or west. I’ll set this information in the <code>trainDestination</code> variable. Additionally, I will return a response to the user to repeat the request again if I can not find the appropriate direction.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">TrainArrivalEstimatesRequestHandler</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">canHandle</span><span class="p">(</span><span class="nx">handlerInput</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;IntentRequest&#39;</span>
+     <span class="o">&amp;&amp;</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">intent</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;TrainArrivalEstimatesRequest&#39;</span><span class="p">;</span>
+ <span class="p">},</span>
+ <span class="nx">handle</span><span class="p">(</span><span class="nx">handlerInput</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kr">const</span> <span class="p">{</span><span class="nx">attributesManager</span><span class="p">}</span> <span class="o">=</span> <span class="nx">handlerInput</span><span class="p">;</span>
+     <span class="kr">const</span> <span class="p">{</span> <span class="nx">request</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">;</span>
+
+     <span class="kd">let</span> <span class="nx">outputText</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">slots</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">intent</span><span class="p">.</span><span class="nx">slots</span><span class="p">;</span>
+     <span class="k">if</span><span class="p">(</span><span class="nx">slots</span><span class="p">.</span><span class="nx">eastDirection</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)){</span>
+         <span class="nx">direction</span> <span class="o">=</span> <span class="nx">slots</span><span class="p">.</span><span class="nx">eastDirection</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+         <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;Service toward 63rd St&#39;</span><span class="p">;</span>
+     <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">slots</span><span class="p">.</span><span class="nx">westDirection</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)){</span>
+         <span class="nx">direction</span> <span class="o">=</span> <span class="nx">slots</span><span class="p">.</span><span class="nx">westDirection</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+         <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;Service toward Harlem/Lake&#39;</span><span class="p">;</span>
+     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+         <span class="kr">const</span> <span class="nx">speechText</span> <span class="o">=</span> <span class="s1">&#39;Sorry, I don\&#39;t know that destination. Try saying it again, or another phrase like: get me the next train toward the city.&#39;</span><span class="p">;</span>
+         <span class="k">return</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">responseBuilder</span>
+             <span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">speechText</span><span class="p">)</span>
+             <span class="p">.</span><span class="nx">withShouldEndSession</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+             <span class="p">.</span><span class="nx">getResponse</span><span class="p">();</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p>I can then grab the train estimated times of arrival from a request to the CTA Train Tracker API. I use the helper functions I created earlier. Then I parse out the data using the helper functions to get me the wait time, estimated time of arrival on a 12-hour clock, and information about whether the train is approaching or delayed. Once I have that information, I can create an output string that instructs Alexa what to say, it will have the estimated arrival times of the next trains going in the specified direction. After the output string is finished being created, I can pass it through the Promise chain and return a response. Ultimately, I will return the Promise which will provide the response for the Alexa SDK.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">TrainArrivalEstimatesRequestHandler</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="nx">canHandle</span><span class="p">(</span><span class="nx">handlerInput</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;IntentRequest&#39;</span>
+     <span class="o">&amp;&amp;</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">intent</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;TrainArrivalEstimatesRequest&#39;</span><span class="p">;</span>
+ <span class="p">},</span>
+ <span class="nx">handle</span><span class="p">(</span><span class="nx">handlerInput</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kr">const</span> <span class="p">{</span><span class="nx">attributesManager</span><span class="p">}</span> <span class="o">=</span> <span class="nx">handlerInput</span><span class="p">;</span>
+     <span class="kr">const</span> <span class="p">{</span> <span class="nx">request</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">requestEnvelope</span><span class="p">;</span>
+
+     <span class="kd">let</span> <span class="nx">outputText</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+     <span class="kd">let</span> <span class="nx">slots</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">intent</span><span class="p">.</span><span class="nx">slots</span><span class="p">;</span>
+     <span class="k">if</span><span class="p">(</span><span class="nx">slots</span><span class="p">.</span><span class="nx">eastDirection</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)){</span>
+         <span class="nx">direction</span> <span class="o">=</span> <span class="nx">slots</span><span class="p">.</span><span class="nx">eastDirection</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+         <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;Service toward 63rd St&#39;</span><span class="p">;</span>
+     <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">slots</span><span class="p">.</span><span class="nx">westDirection</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)){</span>
+         <span class="nx">direction</span> <span class="o">=</span> <span class="nx">slots</span><span class="p">.</span><span class="nx">westDirection</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+         <span class="nx">trainDestination</span> <span class="o">=</span> <span class="s1">&#39;Service toward Harlem/Lake&#39;</span><span class="p">;</span>
+     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+         <span class="kr">const</span> <span class="nx">speechText</span> <span class="o">=</span> <span class="s1">&#39;Sorry, I don\&#39;t know that destination. Try saying it again, or another phrase like: get me the next train toward the city.&#39;</span><span class="p">;</span>
+         <span class="k">return</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">responseBuilder</span>
+             <span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">speechText</span><span class="p">)</span>
+             <span class="p">.</span><span class="nx">withShouldEndSession</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+             <span class="p">.</span><span class="nx">getResponse</span><span class="p">();</span>
+     <span class="p">}</span>
+
+   <span class="c1">//get the next train times here
+</span><span class="c1"></span>   <span class="kd">let</span> <span class="nx">trainXMLData</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">getJsonObjectFromXMLFeed</span><span class="p">(</span><span class="nx">API_CALL</span><span class="p">);</span>
+   <span class="kd">let</span> <span class="nx">estimateData</span> <span class="o">=</span> <span class="nx">trainXMLData</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">jsonArrivalTimes</span><span class="p">){</span>
+       <span class="kd">let</span> <span class="nx">etas</span> <span class="o">=</span> <span class="nx">jsonArrivalTimes</span><span class="p">.</span><span class="nx">ctatt</span><span class="p">.</span><span class="nx">eta</span><span class="p">;</span>
+       <span class="kd">let</span> <span class="nx">etaEstimates</span> <span class="o">=</span> <span class="p">{};</span>
+       <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">eta</span> <span class="k">of</span> <span class="nx">etas</span><span class="p">){</span>
+         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">eta</span><span class="p">);</span>
+         <span class="nx">eta</span><span class="p">.</span><span class="nx">prdt</span> <span class="o">=</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">prdt</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="nx">eta</span><span class="p">.</span><span class="nx">arrT</span> <span class="o">=</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">arrT</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="kd">let</span> <span class="nx">currentTime</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">convertDateTimeToTime</span><span class="p">(</span><span class="nx">eta</span><span class="p">.</span><span class="nx">prdt</span><span class="p">);</span>
+         <span class="kd">let</span> <span class="nx">arrivalTime</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">convertDateTimeToTime</span><span class="p">(</span><span class="nx">eta</span><span class="p">.</span><span class="nx">arrT</span><span class="p">);</span>
+         <span class="kd">let</span> <span class="nx">waitingTime</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">convertMillisecondsToMinutes</span><span class="p">(</span><span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">getTimeDifference</span><span class="p">(</span><span class="nx">currentTime</span><span class="p">,</span> <span class="nx">arrivalTime</span><span class="p">));</span>
+         <span class="nx">waitingTime</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">minutesToHumanHearable</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">waitingTime</span><span class="p">));</span>
+
+         <span class="kd">let</span> <span class="nx">standardArrivalTime</span> <span class="o">=</span> <span class="nx">helperFunctions</span><span class="p">.</span><span class="nx">convertMiltaryTimeToStandardTime</span><span class="p">(</span><span class="nx">arrivalTime</span><span class="p">);</span>
+         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;standardArrivalTime:&#39;</span><span class="p">,</span> <span class="nx">standardArrivalTime</span><span class="p">);</span>
+
+         <span class="nx">eta</span><span class="p">.</span><span class="nx">stpDe</span> <span class="o">=</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">stpDe</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="nx">eta</span><span class="p">.</span><span class="nx">isApp</span> <span class="o">=</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">isApp</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="nx">eta</span><span class="p">.</span><span class="nx">isDly</span> <span class="o">=</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">isDly</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">etaEstimates</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">eta</span><span class="p">.</span><span class="nx">stpDe</span><span class="p">)){</span>
+             <span class="nx">etaEstimates</span><span class="p">[</span><span class="nx">eta</span><span class="p">.</span><span class="nx">stpDe</span><span class="p">].</span><span class="nx">push</span><span class="p">({</span>
+                     <span class="s1">&#39;wait&#39;</span><span class="o">:</span> <span class="nx">waitingTime</span><span class="p">,</span>
+                     <span class="s1">&#39;arrival_time&#39;</span><span class="o">:</span> <span class="nx">standardArrivalTime</span><span class="p">,</span>
+                     <span class="s1">&#39;is_approaching&#39;</span><span class="o">:</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">isApp</span><span class="p">,</span>
+                     <span class="s1">&#39;is_delayed&#39;</span><span class="o">:</span>  <span class="nx">eta</span><span class="p">.</span><span class="nx">isDly</span>
+                 <span class="p">});</span>
+         <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+             <span class="nx">etaEstimates</span><span class="p">[</span><span class="nx">eta</span><span class="p">.</span><span class="nx">stpDe</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+               <span class="s1">&#39;wait&#39;</span><span class="o">:</span> <span class="nx">waitingTime</span><span class="p">,</span>
+               <span class="s1">&#39;arrival_time&#39;</span><span class="o">:</span> <span class="nx">standardArrivalTime</span><span class="p">,</span>
+               <span class="s1">&#39;is_approaching&#39;</span><span class="o">:</span> <span class="nx">eta</span><span class="p">.</span><span class="nx">isApp</span><span class="p">,</span>
+               <span class="s1">&#39;is_delayed&#39;</span><span class="o">:</span>  <span class="nx">eta</span><span class="p">.</span><span class="nx">isDly</span>
+             <span class="p">}];</span>
+         <span class="p">}</span>
+
+       <span class="p">};</span>
+
+       <span class="c1">//get the data of the direction the train is going
+</span><span class="c1"></span>       <span class="nx">etaEstimates</span> <span class="o">=</span> <span class="nx">etaEstimates</span><span class="p">[</span><span class="nx">trainDestination</span><span class="p">];</span>
+       <span class="k">return</span> <span class="p">[</span><span class="nx">direction</span><span class="p">,</span> <span class="nx">etaEstimates</span><span class="p">];</span>
+
+   <span class="p">});</span>
+
+   <span class="kd">let</span> <span class="nx">outputString</span> <span class="o">=</span> <span class="nx">estimateData</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">destinationData</span><span class="p">)</span> <span class="p">{</span>
+       <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="nx">destinationData</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+       <span class="kd">let</span> <span class="nx">estimates</span> <span class="o">=</span> <span class="nx">destinationData</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+       <span class="kd">let</span> <span class="nx">speechOutput</span> <span class="o">=</span> <span class="s1">&#39;The next train towards &#39;</span><span class="o">+</span><span class="nx">direction</span><span class="o">+</span> <span class="s1">&#39; is &#39;</span><span class="p">;</span>
+       <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="nx">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">wait</span> <span class="o">+</span> <span class="s1">&#39; away&#39;</span><span class="p">;</span>
+       <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="s1">&#39;, and due to arrive at &#39;</span><span class="o">+</span> <span class="nx">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">arrival_time</span><span class="o">+</span><span class="s1">&#39;.&#39;</span> <span class="p">;</span>
+       <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">is_approaching</span> <span class="o">===</span> <span class="s1">&#39;1&#39;</span> <span class="o">?</span> <span class="s1">&#39; It is approaching.&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+       <span class="nx">speechOutput</span> <span class="o">+=</span>  <span class="p">(</span><span class="nx">estimates</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">is_delayed</span> <span class="o">===</span> <span class="s1">&#39;1&#39;</span> <span class="o">?</span> <span class="s1">&#39; It is currently delayed.&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+       <span class="k">if</span><span class="p">(</span><span class="nx">estimates</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
+           <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="s1">&#39; There is a following train &#39;</span><span class="p">;</span>
+           <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="nx">estimates</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">wait</span> <span class="o">+</span> <span class="s1">&#39; away&#39;</span><span class="p">;</span>
+           <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="s1">&#39;, and due to arrive at &#39;</span><span class="o">+</span> <span class="nx">estimates</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">arrival_time</span><span class="o">+</span><span class="s1">&#39;.&#39;</span> <span class="p">;</span>
+           <span class="nx">speechOutput</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">estimates</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">is_approaching</span> <span class="o">===</span> <span class="s1">&#39;1&#39;</span> <span class="o">?</span> <span class="s1">&#39; It is approaching.&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+           <span class="nx">speechOutput</span> <span class="o">+=</span>  <span class="p">(</span><span class="nx">estimates</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">is_delayed</span> <span class="o">===</span> <span class="s1">&#39;1&#39;</span> <span class="o">?</span> <span class="s1">&#39; It is currently delayed.&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+       <span class="p">}</span>
+
+       <span class="k">return</span> <span class="nx">speechOutput</span><span class="p">;</span>
+
+   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">speechText</span><span class="p">){</span>
+       <span class="k">return</span> <span class="nx">handlerInput</span><span class="p">.</span><span class="nx">responseBuilder</span>
+           <span class="p">.</span><span class="nx">speak</span><span class="p">(</span><span class="nx">speechText</span><span class="p">)</span>
+           <span class="p">.</span><span class="nx">getResponse</span><span class="p">();</span>
+   <span class="p">});</span>
+   <span class="k">return</span> <span class="nx">outputString</span><span class="p">;</span>
+ <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>Voila! This concludes the walkthrough of the skill. It’s pretty simple and just requires one intent which makes an HTTP request. As mentioned previously, you can view the source code of the train tracker in the repository called <a href="https://github.com/smithsa/train-arrival-times">train-arrival-times</a>. The skill was a quick build just to help me get out on time in the morning, but it can be extended. Maybe in the future, I will have time to expand it so that others can use it but for now it’s on GitHub if anyone wants to use or modify it. So hopefully with this skill, there are fewer long waits in the cold for the train!</p>
+<h2 id="update-10152018">Update: 10/15/2018</h2>
+<p>I figured the application could use some pizzaz and give me some energy when I head off to work! Since there is Copyrighted music in the video, you&rsquo;ll have to <a href="https://www.youtube.com/watch?v=zx_2lXiQMuc">check it out on Youtube</a>!</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/smithsa-hugo/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>

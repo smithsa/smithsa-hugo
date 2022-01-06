@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - Building An Activity Monitor with Circuit Playground Express </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/smithsa-hugo/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/smithsa-hugo/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself ..."/>
+    <meta property="og:title" content="Building An Activity Monitor with Circuit Playground Express"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/smithsa-hugo/posts/building-an-activity-monitor-with-circuit-playground-express/"/>
+    
+    <meta property="og:description" content="The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself ..."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/smithsa-hugo/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/smithsa-hugo/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/smithsa-hugo/smithsa-hugo/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/smithsa-hugo/smithsa-hugo/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/smithsa-hugo/smithsa-hugo/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>Building An Activity Monitor with Circuit Playground Express<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>Earlier this year, the Chicago Python Meetup Group held a workshop on CircuitPython. I entered an idea to build an activity monitor for the workshop and was selected to participate and received a Circuit Playground Express.
+<img src="/images/posts/activity-monitor/tweet.jpg" alt="idea for activity monitor"></p>
+<p>The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself and I found it much easier to work with than the Arduino. There are also various ways to code it (MakeCode, CircuitPython, Arduino, Code.org’s CS Discoveries), for this project I used CircuitPython. I learned a lot about electronics and coding for electronics and wanted to briefly show the activity monitor.</p>
+<h2 id="demonstration">Demonstration</h2>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/pb1g1a4TTLI" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h2 id="bill-of-materials">Bill of Materials</h2>
+<p>![activity monitor bill of materials](/images/posts/activity-monitor/bill of materials.jpg)</p>
+<h2 id="schematics">Schematics</h2>
+<p><img src="/images/posts/activity-monitor/schematic.jpg" alt="schematic bill of materials"></p>
+<h2 id="the-code">The Code</h2>
+<p>The code is posted on Github. <a href="https://github.com/smithsa/activity-monitor">https://github.com/smithsa/activity-monitor</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">adafruit_hcsr04</span>
+<span class="kn">import</span> <span class="nn">board</span>
+<span class="kn">from</span> <span class="nn">adafruit_circuitplayground.express</span> <span class="kn">import</span> <span class="n">cpx</span>
+
+<span class="n">BLACK</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ALERT_COLORS</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)]</span>
+<span class="n">ALERT_CYCLE_DELAY</span> <span class="o">=</span> <span class="mf">.05</span>
+<span class="n">REPEAT_ALERT_AUDIO</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">sonar</span> <span class="o">=</span> <span class="n">adafruit_hcsr04</span><span class="o">.</span><span class="n">HCSR04</span><span class="p">(</span><span class="n">trigger_pin</span><span class="o">=</span><span class="n">board</span><span class="o">.</span><span class="n">A2</span><span class="p">,</span> <span class="n">echo_pin</span><span class="o">=</span><span class="n">board</span><span class="o">.</span><span class="n">A1</span><span class="p">)</span>
+<span class="n">alert_triggered</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">alert_muted_status</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">seconds_counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sensor_reads</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># will get 5 readings from sonar and take the average</span>
+<span class="n">sensor_read_interval</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># every 30 seconds I will get a reading on how far a user is away</span>
+<span class="n">sensor_read_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">aggregated_sensor_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">should_read_sensor</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">seating_threshold</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">movement_check_interval</span> <span class="o">=</span> <span class="mi">3600</span> <span class="c1"># every hour check to alert user to moves</span>
+<span class="n">user_outside_seating_threshold_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">min_amount_of_times_away</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">times_to_play_alert</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">seconds_break_after_alert</span> <span class="o">=</span> <span class="mi">120</span>
+
+<span class="k">def</span> <span class="nf">cycle_lights</span><span class="p">(</span><span class="n">color</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cpx</span><span class="o">.</span><span class="n">pixels</span><span class="p">)):</span>
+        <span class="n">cpx</span><span class="o">.</span><span class="n">pixels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">ALERT_CYCLE_DELAY</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dectect_distance</span><span class="p">(</span><span class="n">sonar</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sonar</span><span class="o">.</span><span class="n">distance</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Retrying!&#34;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">alert</span><span class="p">(</span><span class="n">is_muted</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">alert_triggered</span>
+    <span class="k">if</span> <span class="n">REPEAT_ALERT_AUDIO</span><span class="p">:</span>
+        <span class="n">cpx</span><span class="o">.</span><span class="n">play_file</span><span class="p">(</span><span class="s2">&#34;alert.wav&#34;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">is_muted</span> <span class="o">==</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">alert_triggered</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">cpx</span><span class="o">.</span><span class="n">play_file</span><span class="p">(</span><span class="s2">&#34;alert.wav&#34;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">alertColor</span> <span class="ow">in</span> <span class="n">ALERT_COLORS</span><span class="p">:</span>
+        <span class="n">cycle_lights</span><span class="p">(</span><span class="n">alertColor</span><span class="p">)</span>
+    <span class="n">cycle_lights</span><span class="p">(</span><span class="n">BLACK</span><span class="p">)</span>
+
+    <span class="n">alert_triggered</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">reset_sensor_data</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">sensor_read_count</span>
+    <span class="k">global</span> <span class="n">should_read_sensor</span>
+    <span class="k">global</span> <span class="n">aggregated_sensor_data</span>
+    <span class="n">sensor_read_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">should_read_sensor</span> <span class="o">=</span>  <span class="kc">False</span>
+    <span class="n">aggregated_sensor_data</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">def</span> <span class="nf">reset_movement_check_data</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">user_outside_seating_threshold_count</span>
+    <span class="k">global</span> <span class="n">seconds_counter</span>
+    <span class="k">global</span> <span class="n">alert_triggered</span>
+    <span class="n">user_outside_seating_threshold_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">seconds_counter</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">alert_triggered</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">seconds_counter</span> <span class="o">=</span> <span class="n">seconds_counter</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">seconds_counter</span> <span class="o">%</span> <span class="n">sensor_read_interval</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">should_read_sensor</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">if</span> <span class="n">should_read_sensor</span> <span class="ow">and</span> <span class="n">sensor_read_count</span> <span class="o">&lt;=</span> <span class="n">sensor_reads</span><span class="p">:</span>
+        <span class="n">aggregated_sensor_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dectect_distance</span><span class="p">(</span><span class="n">sonar</span><span class="p">))</span>
+        <span class="n">sensor_read_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">sensor_read_count</span> <span class="o">==</span> <span class="n">sensor_reads</span><span class="p">:</span>
+        <span class="n">average_distance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">aggregated_sensor_data</span><span class="p">)</span><span class="o">/</span><span class="n">sensor_reads</span>
+        <span class="k">if</span> <span class="n">average_distance</span> <span class="o">&gt;</span> <span class="n">seating_threshold</span><span class="p">:</span>
+            <span class="n">user_outside_seating_threshold_count</span> <span class="o">=</span> <span class="n">user_outside_seating_threshold_count</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">reset_sensor_data</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">seconds_counter</span> <span class="o">==</span> <span class="n">movement_check_interval</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">user_outside_seating_threshold_count</span> <span class="o">&lt;</span> <span class="n">min_amount_of_times_away</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times_to_play_alert</span><span class="p">):</span>
+                <span class="n">alert</span><span class="p">(</span><span class="n">alert_muted_status</span><span class="p">)</span>
+
+        <span class="n">reset_movement_check_data</span><span class="p">()</span>
+        <span class="n">reset_sensor_data</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">seconds_break_after_alert</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;seconds_counter:&#34;</span><span class="p">,</span> <span class="n">seconds_counter</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;should_read_sensor:&#34;</span><span class="p">,</span><span class="n">should_read_sensor</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;sensor_read_count:&#34;</span><span class="p">,</span> <span class="n">sensor_read_count</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;aggregated_sensor_data:&#34;</span><span class="p">,</span> <span class="n">aggregated_sensor_data</span><span class="p">)</span>
+</code></pre></div>
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/smithsa-hugo/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/smithsa-hugo/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>

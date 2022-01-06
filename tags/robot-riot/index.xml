@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>robot riot on Sade Smith</title>
+    <link>https://smithsa.github.io/smithsa-hugo/tags/robot-riot/</link>
+    <description>Recent content in robot riot on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/smithsa-hugo/tags/robot-riot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arduino Powered Cybertruck</title>
+      <link>https://smithsa.github.io/smithsa-hugo/posts/arduino-powered-cybertruck/</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/smithsa-hugo/posts/arduino-powered-cybertruck/</guid>
+      <description>Introduction One of my goals this year was to build a robot for a Robot Riot event, affectionately known as Chicago’s worst and only robot fighting league. Initially, going into building it, I had no clue what the theme would be but after building the chassis, attaching the motors, and then deciding to use a PS3 controller as my control device for the robot, the idea eventually came to me. At first, I thought of making a Minecraft bot but then I saw a Minecraft built Tesla’s Cybertruck and thought why not the Cybertruck!</description>
+    </item>
+    
+  </channel>
+</rss>
