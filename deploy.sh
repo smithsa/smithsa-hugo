@@ -1,3 +1,8 @@
+echo "------------- Building hugo successful ------------- "
 hugo
-mkdir ~/Downloads/tmp
-cp public/ ~/Downloads/tmp
+echo "------------- Moving public contents  ------------- "
+mv public/ ~/Downloads/
+echo "------------ Transferring contents ------------- "
+git checkout gh-pages
+mv ~/Downloads/tmp/* .
+checkout -
