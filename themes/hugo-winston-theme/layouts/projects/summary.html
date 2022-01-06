@@ -1,5 +1,5 @@
 <div class="summary-project">
-    <h2 class="summary-title"><a href="{{ if .Params.external_url}} {{ .Params.external_url }} {{ else }} {{.Params.github_url }}{{ end }}">{{ .Title }}</a></h2>
+    <h2 class="summary-title"><a target="_blank" href="{{ if .Params.external_url}} {{ .Params.external_url }} {{ else }} {{.Params.github_url }}{{ end }}">{{ .Title }}</a></h2>
     <p class="summary-description">{{ .Params.description }}</p>
     <div class="summary-footer">
         <div class="summary-tools">
