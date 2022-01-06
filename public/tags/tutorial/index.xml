@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tutorial on Sade Smith</title>
+    <link>https://smithsa.github.io/tags/tutorial/</link>
+    <description>Recent content in tutorial on Sade Smith</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Oct 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Blog With Jekyll</title>
+      <link>https://smithsa.github.io/posts/building-a-blog-with-jekyll/</link>
+      <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/posts/building-a-blog-with-jekyll/</guid>
+      <description>Introduction A few months ago, I decided to convert my personal website, which was a static HTML site, to Jekyll. If you aren’t familiar with Jekyll, it’s a blog-aware static site generator built on Ruby. I wanted to create a blog for my website and also have the ability to template the pages of my site but wanted a lightweight solution. I considered a few content management systems but ultimately Jekyll came out on top.</description>
+    </item>
+    
+    <item>
+      <title>Scraping Client Side Rendered Data with Python and Selenium</title>
+      <link>https://smithsa.github.io/posts/scraping-client-side-rendered-data-with-python-and-selenium/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://smithsa.github.io/posts/scraping-client-side-rendered-data-with-python-and-selenium/</guid>
+      <description>Introduction Scraping data from websites often offers a way to automate tedious tasks and improve productivity. However, many people run into issues when the content of a website is generated on the client side as opposed to the server-side. For instance, content can not be retreived with just a HTTP request for websites that utilize AJAX to generate it&amp;rsquo;s content. A web scrapper using only server-side requests would be unable to scrape the data of such a site because the HTML of the page does not load until the javascript of the site can be executed.</description>
+    </item>
+    
+  </channel>
+</rss>

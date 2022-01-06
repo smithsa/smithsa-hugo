@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - Scraping Client Side Rendered Data with Python and Selenium </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="Scraping data from websites often offers a way to automate tedious tasks and improve productivity. However, many people run into issues when the content of a website is generated on the client side as opposed to the server-side."/>
+    <meta property="og:title" content="Scraping Client Side Rendered Data with Python and Selenium"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/posts/scraping-client-side-rendered-data-with-python-and-selenium/"/>
+    
+    <meta property="og:description" content="Scraping data from websites often offers a way to automate tedious tasks and improve productivity. However, many people run into issues when the content of a website is generated on the client side as opposed to the server-side."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>Scraping Client Side Rendered Data with Python and Selenium<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>Scraping data from websites often offers a way to automate tedious tasks and improve productivity. However, many people run into issues when the content of a website is generated on the client side as opposed to the server-side. For instance, content can not be retreived with just a HTTP request for websites that utilize AJAX to generate it&rsquo;s content. A web scrapper using only server-side requests would be unable to scrape the data of such a site because the HTML of the page does not load until the javascript of the site can be executed. Since the Javascript can only be executed on the client side, a request from the page would not include it&rsquo;s dynamic content.</p>
+<p>To solve this problem, you can use a browser automation tool such as Selenium or PhantomJs in combination with your web scraper script. Using a browser automation tool, the HTML is able to be generated and thus read and parsed. In this tutorial, I will be showing you how to write a basic script to scrape client-side rendered content with Python and Selenium.</p>
+<p>Remember before you scrape content or data from websites, ensure that you have legal rights to do so, read the site&rsquo;s terms of service agreement to see if scraping is allowed, and ensure that an alternative method for to retrieve the data does not exist, for example an API. In addition, check the robots.txt file and follow the rules for how frequently you are allowed to request pages and what pages are allowed to be scraped.</p>
+<p>The Python Selenium library includes a HTML tree parser but we will use Selenium to load the page&rsquo;s content and BeautifulSoup to parse the HTML, since BeautifulSoup is Python&rsquo;s most popular parser.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Python 2.7 programming environment available here (<a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>)</li>
+<li>MacOS or Linux Environment</li>
+<li>Virtualenv available here (<a href="https://pypi.org/project/virtualenv/">https://pypi.org/project/virtualenv/</a>)</li>
+<li>pip, package manager for available here python (<a href="https://pip.pypa.io/en/stable/installing/">https://pip.pypa.io/en/stable/installing/</a>)</li>
+</ul>
+<h2 id="virtual-environment-setup">Virtual Environment Setup</h2>
+<p>Before we start writing the script, we will first set up a virtual environment. Let&rsquo;s first create a directory for the project called simple-scrapper and navigate to the directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    mkdir simple-scrapper
+    cd simple-scrapper
+</code></pre></div><p>Now we can create the virtual environment and activate the environment with the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    virtualenv venv
+    source venv/bin/activate
+</code></pre></div><h2 id="installing-python-libraries">Installing Python Libraries</h2>
+<p>Next, we can install all the python modules and libraries we will need for the script with pip. We will need the selenium python bindings, BeatifulSoup4, and the requests library.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="n">pip</span> <span class="n">install</span> <span class="n">selenium</span>
+    <span class="n">pip</span> <span class="n">install</span> <span class="n">BeautifulSoup4</span>
+    <span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span>
+</code></pre></div><h2 id="downloading-selenium-driver">Downloading Selenium Driver</h2>
+<p>Now that we have all our libraries installed, we should download a driver for Selenium. The driver is required for Selenium to interface the browser you choose to use. For our purposes, we will use Chrome as our browser. You can download the latest release of the Chrome driver here: <a href="http://chromedriver.chromium.org/downloads">http://chromedriver.chromium.org/downloads</a>. Download the appropriate zip file for your operating system, unzip the file, and you should find an executable file named &ldquo;chromedriver.&rdquo; Put this file at the root of the &ldquo;simple-scrapper&rdquo; folder we just created.</p>
+<h2 id="the-web-scraping-script">The Web Scraping Script</h2>
+<p>We are now ready to start writing the scraper. Let&rsquo;s create a python file in at the root of the folder &ldquo;simple-scraper&rdquo; called &ldquo;scrapper.py.&rdquo;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    touch scrapper.py
+</code></pre></div><p>Open the file with your preferred text editor and let&rsquo;s start writing the code to scrape a web page. For our purposes, I have created a basic page to scrape that has client-side rendered HTML. You can find the example file here: <a href="http://sadesmith.com/examples/simple-scrapper/index.html">http://sadesmith.com/examples/simple-scrapper/index.html</a>{:target=&quot;_blank&quot;}. Lets quickly examine the content of the page. The page simply lists the names of basketball players on the 2018 Golden State Warriors Roster — there is one header and an unordered list. Our goal will be simple, scrape all the names of the roster and print them out once collected.</p>
+<p>The first task will be to load the webpage using the driver we just downloaded. We will need to tell the WebDriver where the driver is located by setting the executable path on the Chrome class. Then we can request the webpage by using the get method of the driver.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/chromedriver&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://www.sadesmith.com/examples/simple-scrapper/index.html&#34;</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div><p>Next, we will need to tell the WebDriver to wait a few seconds before parsing the page. We will import the time module and use the sleep method. We will give the method the value of 3, thus the wait time will be 3 seconds.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/chromedriver&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://www.sadesmith.com/examples/simple-scrapper/index.html&#34;</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div><p>We are ready to parse but before we do that let&rsquo;s import beautiful soup.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+</code></pre></div><p>Now we can grab the content we need to parse. With the WebDriver loading the page, we can now view content loaded client-side. WebDriver&rsquo;s page_source will return the source code of the DOM as a string. We can use BeautifulSoup to parse the HTML string, with its HTML parser.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="n">page_html</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+    <span class="n">bsoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page_html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+</code></pre></div><p>With the BeautifulSoup object, we can then use the library to its full extent. If you are unfamiliar with BeautifulSoup you can find more documentation here about how to parse: <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">https://www.crummy.com/software/BeautifulSoup/bs4/doc/</a>. For our example, we know that all the names on the Warrior&rsquo;s rosters are in an unordered list, in list item tag with the class name of &ldquo;name&rdquo;. So we can grab all list item elements with the class attribute name then loop through them print them out.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="n">player_names</span> <span class="o">=</span> <span class="n">bsoup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">});</span>
+    <span class="k">for</span> <span class="n">player_name</span> <span class="ow">in</span> <span class="n">player_names</span><span class="p">:</span>
+      <span class="nb">print</span> <span class="n">player_name</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div><h2 id="wrapping-it-all-up">Wrapping it all up</h2>
+<p>We are done with the simple scrapper and your file should now look this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+    <span class="kn">import</span> <span class="nn">time</span>
+    <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">executable_path</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;/chromedriver&#39;</span><span class="p">)</span>
+    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">page_html</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+    <span class="n">bsoup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">page_html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+    <span class="n">player_names</span> <span class="o">=</span> <span class="n">bsoup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;name&#39;</span><span class="p">});</span>
+    <span class="k">for</span> <span class="n">player_name</span> <span class="ow">in</span> <span class="n">player_names</span><span class="p">:</span>
+        <span class="nb">print</span> <span class="n">player_name</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div><p>Now let&rsquo;s run the project in the terminal! Make sure your current working directory is &ldquo;simple-scrapper&rdquo; and run the script.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">    python scrapper.py
+</code></pre></div><p>If everything went well, you should see the names of the players on the 2018 Golden State Warriors printed in your terminal screen. We have accomplished our objective! Via our simple web scraper script, we were able to scrape HTML that was generated on the client-side using Selenium and Python.</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>

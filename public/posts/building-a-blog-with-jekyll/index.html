@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sade Smith - Building a Blog With Jekyll </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="https://smithsa.github.io/favicon.ico">
+
+  
+  
+  <link rel="stylesheet" href="/css/style.min.6d31053b889309cc0098076a98c7b69d09429fbf980c5192353c1898354cd2e4.css">
+  
+
+  
+    <meta name="description" content="A few months ago, I decided to convert my personal website, which was a static HTML site, to Jekyll. If you aren’t familiar with Jekyll, it’s a blog-aware static site generator built on Ruby. I considered a few content management systems but ultimately Jekyll came out on top."/>
+    <meta property="og:title" content="Building a Blog With Jekyll"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://smithsa.github.io/posts/building-a-blog-with-jekyll/"/>
+    
+    <meta property="og:description" content="A few months ago, I decided to convert my personal website, which was a static HTML site, to Jekyll. If you aren’t familiar with Jekyll, it’s a blog-aware static site generator built on Ruby. I considered a few content management systems but ultimately Jekyll came out on top."/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="@itsSadeSmith"/>
+    <meta name="twitter:creator" content="@itsSadeSmith"/>
+  
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6c5101a50b.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+<body class='page frame page-blog-single'>
+  <div id="wrapper" class="wrapper">
+    <div class='header'>
+  <div class="menu-wrapper">
+    <a class="header-logo" href="https://smithsa.github.io/">Sade Smith</a>
+    <div class="menu-main">
+      <ul>
+          
+          
+              <li class="menu-item-about">
+                  <a href="/pages/about/">About</a>
+              </li>
+          
+              <li class="menu-item-posts">
+                  <a href="/posts/">Posts</a>
+              </li>
+          
+              <li class="menu-item-projects">
+                  <a href="/projects/">Projects</a>
+              </li>
+          
+          <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <input type="checkbox" id="overlay-input" />
+  <label for="overlay-input" id="overlay-button" aria-label="toggle menu"><span></span></label>
+
+  <div id="overlay">
+    <ul>
+      
+      <li class="menu-item-home"><a href="https://smithsa.github.io/">Home</a></li>
+      
+          <li class="menu-item-about">
+              <a href="/pages/about/">About</a>
+          </li>
+      
+          <li class="menu-item-posts">
+              <a href="/posts/">Posts</a>
+          </li>
+      
+          <li class="menu-item-projects">
+              <a href="/projects/">Projects</a>
+          </li>
+      
+      <li><a class="menu-item-contact" href="mailto:sade.smith.dev@gmail.com">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+    
+  <div class="blog">
+    
+    <div class="intro">
+      <h1>Building a Blog With Jekyll<span class="dot">.</span></h1>
+      
+    </div>
+    <div class="content">
+      <h2 id="introduction">Introduction</h2>
+<p>A few months ago, I decided to convert my personal website, which was a static HTML site, to <a href="https://jekyllrb.com/">Jekyll</a>. If you aren’t familiar with Jekyll, it’s a blog-aware static site generator built on Ruby. I wanted to create a blog for my website and also have the ability to template the pages of my site but wanted a lightweight solution. I considered a few content management systems but ultimately Jekyll came out on top. The decision to convert over to Jekyll was an easy one, and after a few months of using it, certainly a decision I am happy with. In this blog post, I will discuss my experience with the static site generator, it benefits, and how you can get started using it.</p>
+<h2 id="experience-with-jekyll">Experience with Jekyll</h2>
+<p>The first requirement I had for my site was that it should be static. If the site was static, then I could easily host it on GitHub and not have to worry about hosting fees in the future. The next requirement I was for the site to have a blog. However, I didn’t want to have to manually format each post, I wanted something with templating as well. I essentially needed a content management system (CMS) for a static site. The first idea I had was to use a CMS like WordPress and access its API writing some reusable code to get posts and it’s metadata. But I didn’t want to have to worry about managing calls to an API which was all too complex for a simple blog. I also realized that for CMSs like WordPress I would have to pay to host an installation of that CMS. So an option like WordPress or Drupal was out of the picture for me. Luckily, I did more research and Jekyll came to my attention — it was a perfect match. A simple, blog-aware, and static site generator was just what I needed. Plus it was an added bonus that <a href="https://pages.github.com/">GitHub Pages</a> are powered by Jekyll so I could easily deploy the site with GitHub for free.</p>
+<p>It’s important to note, at this point, I already had a developed static site. I just needed something to manage blog posts for the site. The task at hand was to transfer it into Jekyll. It took less than a day to familiarize myself with its structure and my blog was up and running within a few days. Experience developing countless themes and familiarity with the Liquid templating language, helped me pick up Jekyll quickly. There were some things I had to learn like YAML, formatting in Markdown, and how the plugin system worked. However, they were easy to learn, and I picked those up in no time as well. You certainly don’t need prior experience to get going but it helps!</p>
+<h2 id="advantages-of-jekyll">Advantages of Jekyll</h2>
+<p>Before I show you how you can get started, I will list some of the advantages of using Jekyll.</p>
+<h3 id="free-hosting">Free Hosting</h3>
+<p>The greatest advantage for me by far is the fact that I can host it for free with ease. Simply put your Jekyll site in a GitHub repository and you will have free hosting for your blog. If you are using GitHub for your version control already, then it makes sense to use it for your free hosting as well &ndash; two birds, one stone.</p>
+<h3 id="speed">Speed</h3>
+<p>Static files load a lot faster than dynamic files which sometimes have to wait for database queries and API calls. With Jekyll, only the files that are needed are being served.</p>
+<h3 id="simplicity">Simplicity</h3>
+<p>You don’t have to worry about databases or bulky user interfaces provided by a CMS. Jekyll only includes what you need.</p>
+<h3 id="security">Security</h3>
+<p>The absence of a database eliminates the risk of common security threats such as SQL injections. Your attack surface is drastically reduced.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p><strong>Requirements</strong></p>
+<ul>
+<li><a href="https://www.ruby-lang.org/en/downloads/">Ruby version 2.2.5 or above</a></li>
+<li><a href="https://rubygems.org/pages/download">Ruby Gems</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Install Jekyll and the bundler gem (manages the application’s dependencies)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">gem install jekyll bundler
+</code></pre></div><ol start="2">
+<li>Create your new Jekyll site</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">jekyll new your-blog-name
+</code></pre></div><ol start="3">
+<li>
+<p>Navigate to your newly created Jekyll project</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> your-blog-name
+</code></pre></div></li>
+<li>
+<p>Serve your new Jekyll project on a local server</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bundle <span class="nb">exec</span> jekyll serve
+</code></pre></div><p>Open  <a href="http://localhost:4000">http://localhost:4000</a> in your browser to view your new site.</p>
+</li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>Jekyll uses YAML, a human-readable data serialization language, for its configuration file. The file can be found at the root level of your project and it is titled <code>_config.yml</code>. If you need to reference more options the <a href="https://jekyllrb.com/docs/configuration/default/">default configuration</a> can be found in Jekyll’s documentation. But you can edit the title, email, and description in the file to begin with. Additionally, if you wanted to use a theme or plugin, or just wanted to change the type of Markdown being used you would edit those settings in this file.</p>
+<h2 id="pages">Pages</h2>
+<p>Pages in Jekyll are either Markdown or HTML documents and are used for stand-alone content. You can add a page by adding either document types to the root level of your project. If you use a Markdown file, the file will be converted to HTML during its build which can be found in the <code>_site</code> folder. You can also create subpages by placing your files for your subpages in a folder, titled the parent page. Then create the parent page in a file title <em>index</em>.</p>
+<h2 id="templating-and-layouts">Templating and Layouts</h2>
+<p>As mentioned previously, <a href="https://shopify.github.io/liquid/">Liquid</a> is used for the templating system. In the pages of the project file, you might see statements wrapped in curly braces. Output statements are surrounded by the double curly braces while logic statements are encapsulated in the curly braces and percent sign. You can add Liquid statement in your pages and layouts.</p>
+<p>Layouts are templates that surround your content, for example, a layout could include your top navigation and footer. The Layouts live the <code>_layouts</code> directory. Layouts are helpful because you don’t have to copy and paste the code for recurring components of your website (e.g. footer) for every page.</p>
+<p>Additionally, in your layouts and pages, you are given more tools to template pages with Includes. Includes in Jekyll are template parts which live in the <code>_includes</code> folder. The includes can either be HTML or Markdown files. To use the include you would simply reference its name with the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{% raw %}{% include your-file-name.html %}&#34;{% endraw %}
+</code></pre></div><h2 id="posts">Posts</h2>
+<p>The posts of your Jekyll site live in the <code>_posts</code> folder. Jekyll states that typically posts are written in Markdown but HTML is also supported. I exclusively use Markdown, I find that it is easiest to maintain. If you need help in formatting Markdown, I’ve found this <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown cheatsheet</a> on github created by <a href="https://crypti.cc/">Adam Pritchard</a> to be a great resource. Each file name should follow this specific format where ‘YEAR’ is the four-digit year number, <code>MONTH</code> and <code>DAY</code> are two digit numbers reflecting each respectively, and Markup is the file extension :</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown">YEAR-MONTH-DAY-title.MARKUP
+</code></pre></div><p>At the top of every post will be YAML front matter, which Jekyll uses for maintaining metadata throughout the site (You might have noticed it on the pages). All posts must use this format for its metadata. The most basic front matter will include the layout and title.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">layout</span><span class="p">:</span><span class="w"> </span><span class="l">post</span><span class="w">
+</span><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w">  </span><span class="s2">&#34;Welcome to Jekyll!&#34;</span><span class="w">
+</span></code></pre></div><p>Following the post’s metadata is the content of the post.</p>
+<h2 id="assets-and-static-files">Assets and Static Files</h2>
+<p>Lastly, Jekyll provides built-in support for Sass and CoffeScript. Sass files should live in a <code>_sass</code> folder. The stylesheets will be output to a <code>css</code> folder when the build runs. To use CoffeeScript a gem is required. For more information you can read <a href="https://jekyllrb.com/docs/assets/">Jekyll’s documentation on how to use Sass and CoffeScript</a>.</p>
+<p>Alternatively, you can serve your JavaScript and CSS as static files. Static files can be PDFs, Javascript and CSS files, images, etc. Any content that does not need to be rendered. Static files are accessible via Liquid: <code>site.static_files</code>. To serve your static files, you can use <code>{{site.url}}</code> and follow it by the path to the file as well.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>Jekyll is easy to get started with and provides you with a lightweight alternative to using a CMS if you are building a blog. You get speed, simplicity, better security than a CMS, and an added bonus of free hosting with Jekyll! Converting over to Jekyll for my website was a great decision and one I do not regret a bit because of its ease of use and benefits. I would recommend it to anyone who wants to create a blog.</p>
+
+    </div>
+  </div>
+
+    <div class="footer">
+  
+  <div class="footer-social">
+    
+      <span class="social-icon social-icon-twitter">
+        <a href="https://twitter.com/itsSadeSmith" title="twitter" target="_blank" rel="noopener">
+          <img src="/images/social/twitter.svg" width="24" height="24" alt="twitter"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-github">
+        <a href="https://github.com/smithsa" title="github" target="_blank" rel="noopener">
+          <img src="/images/social/github.svg" width="24" height="24" alt="github"/>
+        </a>
+      </span>
+    
+      <span class="social-icon social-icon-linkedin">
+        <a href="https://www.linkedin.com/in/sade-s-58709160/" title="linkedin" target="_blank" rel="noopener">
+          <img src="/images/social/linkedin.svg" width="24" height="24" alt="linkedin"/>
+        </a>
+      </span>
+    
+  </div>
+  
+</div>
+  </div>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/bundle.min.0409c45f4172639be5045d2f87b8fe3cb9c64bec7f612de5ebcbcc6813a85ee2.js"></script>
+  
+
+  
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+</html>
