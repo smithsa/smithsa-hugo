@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>circuitpython on Sade Smith</title>
-    <link>https://smithsa.github.io/tags/circuitpython/</link>
+    <link>https://www.sadesmith.com/tags/circuitpython/</link>
     <description>Recent content in circuitpython on Sade Smith</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/tags/circuitpython/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.sadesmith.com/tags/circuitpython/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building An Activity Monitor with Circuit Playground Express</title>
-      <link>https://smithsa.github.io/posts/building-an-activity-monitor-with-circuit-playground-express/</link>
+      <link>https://www.sadesmith.com/posts/building-an-activity-monitor-with-circuit-playground-express/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/posts/building-an-activity-monitor-with-circuit-playground-express/</guid>
+      <guid>https://www.sadesmith.com/posts/building-an-activity-monitor-with-circuit-playground-express/</guid>
       <description>Introduction Earlier this year, the Chicago Python Meetup Group held a workshop on CircuitPython. I entered an idea to build an activity monitor for the workshop and was selected to participate and received a Circuit Playground Express. The Circuit Playground Express offers a number of built-in sensors, an accelerometer, LEDs, and buttons. You can do a lot with just the microcontroller itself and I found it much easier to work with than the Arduino.</description>
     </item>
     

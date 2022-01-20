@@ -202,3 +202,31 @@ ul {
 .crt-popup-visible {
  overflow: auto !important;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.instagram-media {
+  margin-bottom: 30px;
+}
+
+.instagram-media:last-child {
+  margin-bottom: 0;
+}
+
+.mt-20{
+  margin-top: 20px;
+}
+
+.mt-30{
+  margin-top: 30px;
+}
+
+.mt-60{
+  margin-top: 60px;
+}

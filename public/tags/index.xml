@@ -2,314 +2,323 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Sade Smith</title>
-    <link>https://smithsa.github.io/tags/</link>
+    <link>https://www.sadesmith.com/tags/</link>
     <description>Recent content in Tags on Sade Smith</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://smithsa.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.sadesmith.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>arduino</title>
-      <link>https://smithsa.github.io/tags/arduino/</link>
-      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      <title>design</title>
+      <link>https://www.sadesmith.com/tags/design/</link>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/arduino/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hardware</title>
-      <link>https://smithsa.github.io/tags/hardware/</link>
-      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://smithsa.github.io/tags/hardware/</guid>
+      <guid>https://www.sadesmith.com/tags/design/</guid>
       <description></description>
     </item>
     
     <item>
       <title>makershare</title>
-      <link>https://smithsa.github.io/tags/makershare/</link>
+      <link>https://www.sadesmith.com/tags/makershare/</link>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.sadesmith.com/tags/makershare/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arduino</title>
+      <link>https://www.sadesmith.com/tags/arduino/</link>
       <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/makershare/</guid>
+      <guid>https://www.sadesmith.com/tags/arduino/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hardware</title>
+      <link>https://www.sadesmith.com/tags/hardware/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.sadesmith.com/tags/hardware/</guid>
       <description></description>
     </item>
     
     <item>
       <title>metromini</title>
-      <link>https://smithsa.github.io/tags/metromini/</link>
+      <link>https://www.sadesmith.com/tags/metromini/</link>
       <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/metromini/</guid>
+      <guid>https://www.sadesmith.com/tags/metromini/</guid>
       <description></description>
     </item>
     
     <item>
       <title>robot</title>
-      <link>https://smithsa.github.io/tags/robot/</link>
+      <link>https://www.sadesmith.com/tags/robot/</link>
       <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/robot/</guid>
+      <guid>https://www.sadesmith.com/tags/robot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>robot riot</title>
-      <link>https://smithsa.github.io/tags/robot-riot/</link>
+      <link>https://www.sadesmith.com/tags/robot-riot/</link>
       <pubDate>Sun, 08 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/robot-riot/</guid>
+      <guid>https://www.sadesmith.com/tags/robot-riot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>circuit playground express</title>
-      <link>https://smithsa.github.io/tags/circuit-playground-express/</link>
+      <link>https://www.sadesmith.com/tags/circuit-playground-express/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/circuit-playground-express/</guid>
+      <guid>https://www.sadesmith.com/tags/circuit-playground-express/</guid>
       <description></description>
     </item>
     
     <item>
       <title>circuitpython</title>
-      <link>https://smithsa.github.io/tags/circuitpython/</link>
+      <link>https://www.sadesmith.com/tags/circuitpython/</link>
       <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/circuitpython/</guid>
+      <guid>https://www.sadesmith.com/tags/circuitpython/</guid>
       <description></description>
     </item>
     
     <item>
       <title>javascript</title>
-      <link>https://smithsa.github.io/tags/javascript/</link>
+      <link>https://www.sadesmith.com/tags/javascript/</link>
       <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/javascript/</guid>
+      <guid>https://www.sadesmith.com/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CAD</title>
-      <link>https://smithsa.github.io/tags/cad/</link>
+      <link>https://www.sadesmith.com/tags/cad/</link>
       <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/cad/</guid>
+      <guid>https://www.sadesmith.com/tags/cad/</guid>
       <description></description>
     </item>
     
     <item>
       <title>alexa</title>
-      <link>https://smithsa.github.io/tags/alexa/</link>
+      <link>https://www.sadesmith.com/tags/alexa/</link>
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/alexa/</guid>
+      <guid>https://www.sadesmith.com/tags/alexa/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ASK SDK</title>
-      <link>https://smithsa.github.io/tags/ask-sdk/</link>
+      <link>https://www.sadesmith.com/tags/ask-sdk/</link>
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/ask-sdk/</guid>
+      <guid>https://www.sadesmith.com/tags/ask-sdk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>node</title>
-      <link>https://smithsa.github.io/tags/node/</link>
+      <link>https://www.sadesmith.com/tags/node/</link>
       <pubDate>Mon, 29 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/node/</guid>
+      <guid>https://www.sadesmith.com/tags/node/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jekyll</title>
-      <link>https://smithsa.github.io/tags/jekyll/</link>
+      <link>https://www.sadesmith.com/tags/jekyll/</link>
       <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/jekyll/</guid>
+      <guid>https://www.sadesmith.com/tags/jekyll/</guid>
       <description></description>
     </item>
     
     <item>
       <title>static site generator</title>
-      <link>https://smithsa.github.io/tags/static-site-generator/</link>
+      <link>https://www.sadesmith.com/tags/static-site-generator/</link>
       <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/static-site-generator/</guid>
+      <guid>https://www.sadesmith.com/tags/static-site-generator/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tutorial</title>
-      <link>https://smithsa.github.io/tags/tutorial/</link>
+      <link>https://www.sadesmith.com/tags/tutorial/</link>
       <pubDate>Mon, 15 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/tutorial/</guid>
+      <guid>https://www.sadesmith.com/tags/tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>a11y</title>
-      <link>https://smithsa.github.io/tags/a11y/</link>
+      <link>https://www.sadesmith.com/tags/a11y/</link>
       <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/a11y/</guid>
+      <guid>https://www.sadesmith.com/tags/a11y/</guid>
       <description></description>
     </item>
     
     <item>
       <title>accessibility</title>
-      <link>https://smithsa.github.io/tags/accessibility/</link>
+      <link>https://www.sadesmith.com/tags/accessibility/</link>
       <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/accessibility/</guid>
+      <guid>https://www.sadesmith.com/tags/accessibility/</guid>
       <description></description>
     </item>
     
     <item>
       <title>wcag</title>
-      <link>https://smithsa.github.io/tags/wcag/</link>
+      <link>https://www.sadesmith.com/tags/wcag/</link>
       <pubDate>Sun, 12 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/wcag/</guid>
+      <guid>https://www.sadesmith.com/tags/wcag/</guid>
       <description></description>
     </item>
     
     <item>
       <title>apis</title>
-      <link>https://smithsa.github.io/tags/apis/</link>
+      <link>https://www.sadesmith.com/tags/apis/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/apis/</guid>
+      <guid>https://www.sadesmith.com/tags/apis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>browser</title>
-      <link>https://smithsa.github.io/tags/browser/</link>
+      <link>https://www.sadesmith.com/tags/browser/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/browser/</guid>
+      <guid>https://www.sadesmith.com/tags/browser/</guid>
       <description></description>
     </item>
     
     <item>
       <title>payment requests</title>
-      <link>https://smithsa.github.io/tags/payment-requests/</link>
+      <link>https://www.sadesmith.com/tags/payment-requests/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/payment-requests/</guid>
+      <guid>https://www.sadesmith.com/tags/payment-requests/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pwas</title>
-      <link>https://smithsa.github.io/tags/pwas/</link>
+      <link>https://www.sadesmith.com/tags/pwas/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/pwas/</guid>
+      <guid>https://www.sadesmith.com/tags/pwas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>service workers</title>
-      <link>https://smithsa.github.io/tags/service-workers/</link>
+      <link>https://www.sadesmith.com/tags/service-workers/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/service-workers/</guid>
+      <guid>https://www.sadesmith.com/tags/service-workers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>web bluetooth</title>
-      <link>https://smithsa.github.io/tags/web-bluetooth/</link>
+      <link>https://www.sadesmith.com/tags/web-bluetooth/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/web-bluetooth/</guid>
+      <guid>https://www.sadesmith.com/tags/web-bluetooth/</guid>
       <description></description>
     </item>
     
     <item>
       <title>web share</title>
-      <link>https://smithsa.github.io/tags/web-share/</link>
+      <link>https://www.sadesmith.com/tags/web-share/</link>
       <pubDate>Wed, 18 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/web-share/</guid>
+      <guid>https://www.sadesmith.com/tags/web-share/</guid>
       <description></description>
     </item>
     
     <item>
       <title>automation</title>
-      <link>https://smithsa.github.io/tags/automation/</link>
+      <link>https://www.sadesmith.com/tags/automation/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/automation/</guid>
+      <guid>https://www.sadesmith.com/tags/automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://smithsa.github.io/tags/python/</link>
+      <link>https://www.sadesmith.com/tags/python/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/python/</guid>
+      <guid>https://www.sadesmith.com/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>selenium</title>
-      <link>https://smithsa.github.io/tags/selenium/</link>
+      <link>https://www.sadesmith.com/tags/selenium/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/selenium/</guid>
+      <guid>https://www.sadesmith.com/tags/selenium/</guid>
       <description></description>
     </item>
     
     <item>
       <title>web scraping</title>
-      <link>https://smithsa.github.io/tags/web-scraping/</link>
+      <link>https://www.sadesmith.com/tags/web-scraping/</link>
       <pubDate>Fri, 15 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/web-scraping/</guid>
+      <guid>https://www.sadesmith.com/tags/web-scraping/</guid>
       <description></description>
     </item>
     
     <item>
       <title>http</title>
-      <link>https://smithsa.github.io/tags/http/</link>
+      <link>https://www.sadesmith.com/tags/http/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/http/</guid>
+      <guid>https://www.sadesmith.com/tags/http/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spdy</title>
-      <link>https://smithsa.github.io/tags/spdy/</link>
+      <link>https://www.sadesmith.com/tags/spdy/</link>
       <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/spdy/</guid>
+      <guid>https://www.sadesmith.com/tags/spdy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>http/1.1</title>
-      <link>https://smithsa.github.io/tags/http/1.1/</link>
+      <link>https://www.sadesmith.com/tags/http/1.1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/http/1.1/</guid>
+      <guid>https://www.sadesmith.com/tags/http/1.1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>http/2</title>
-      <link>https://smithsa.github.io/tags/http/2/</link>
+      <link>https://www.sadesmith.com/tags/http/2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://smithsa.github.io/tags/http/2/</guid>
+      <guid>https://www.sadesmith.com/tags/http/2/</guid>
       <description></description>
     </item>
     
