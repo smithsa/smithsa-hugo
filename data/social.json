@@ -1,18 +1,13 @@
 {
   "links": [
     {
-      "name": "twitter",
-      "url": "https://twitter.com/itsSadeSmith",
-      "image": "images/social/twitter.svg"
-    },
-    {
       "name": "github",
       "url": "https://github.com/smithsa",
       "image": "images/social/github.svg"
     },
     {
       "name": "linkedin",
-      "url": "https://www.linkedin.com/in/sade-s-58709160/",
+      "url": "https://www.linkedin.com/in/sade-smith-58709160/",
       "image": "images/social/linkedin.svg"
     }
   ]
